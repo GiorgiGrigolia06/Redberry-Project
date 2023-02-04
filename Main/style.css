@@ -164,3 +164,13 @@ header {
   left: 1076px;
   top: 473px;
 }
+
+a,
+a:link,
+a:visited,
+a:hover,
+a:active a:focus {
+  list-style-type: none;
+  color: white;
+  text-decoration: none;
+}

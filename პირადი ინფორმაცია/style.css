@@ -139,10 +139,26 @@ body {
   font-family: "HNeue";
 }
 
+input,
+textarea {
+  outline: none;
+  font-size: 16px;
+  line-height: 21px;
+  color: #000000;
+}
+
 .left {
   width: 1098px;
   height: 1080px;
   background-color: #f9f9f9;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="tel"],
+textarea {
+  padding: 13px 16px 14px 16px;
 }
 
 header {
@@ -210,7 +226,6 @@ input::placeholder {
   font-weight: 400;
   font-size: 16px;
   line-height: 21px;
-  padding: 13px 16px 14px 16px;
 }
 
 .first-and-last-names label {
@@ -221,6 +236,48 @@ input::placeholder {
   line-height: 21px;
   color: #000000;
   margin-bottom: 8px;
+}
+
+.passName {
+  height: 16.5px;
+  width: 16.5px;
+  border-radius: 0px;
+  position: absolute;
+  margin-top: 45px;
+  margin-left: 340px;
+  display: none;
+  object-fit: cover;
+}
+
+.errorName {
+  height: 16.5px;
+  width: 16.5px;
+  border-radius: 0px;
+  position: absolute;
+  margin-top: 45px;
+  margin-left: 340px;
+  display: none;
+}
+
+.passLastName {
+  height: 16.5px;
+  width: 16.5px;
+  border-radius: 0px;
+  position: absolute;
+  margin-top: 45px;
+  margin-left: 340px;
+  display: none;
+  object-fit: cover;
+}
+
+.errorLastName {
+  height: 16.5px;
+  width: 16.5px;
+  border-radius: 0px;
+  position: absolute;
+  margin-top: 45px;
+  margin-left: 340px;
+  display: none;
 }
 
 .upload-image {
@@ -254,7 +311,7 @@ input::placeholder {
 }
 
 .upload-image input[type="file"] {
-  display: none;
+  opacity: 0;
 }
 
 .about {
@@ -280,6 +337,7 @@ input::placeholder {
   border: 1px solid #bcbcbc;
   border-radius: 4px;
   overflow: scroll;
+  resize: none;
 }
 
 .about textarea::placeholder {
@@ -288,8 +346,6 @@ input::placeholder {
   font-size: 16px;
   line-height: 21px;
   color: rgba(0, 0, 0, 0.6);
-  padding-top: 13px;
-  padding-left: 16px;
 }
 
 .e-mail {
@@ -310,7 +366,6 @@ input::placeholder {
 
 .e-mail input {
   width: 810px;
-  padding: 13px 16px 14px 16px;
   background: #ffffff;
   border: 1px solid #bcbcbc;
   border-radius: 4px;
@@ -323,6 +378,28 @@ input::placeholder {
   font-size: 14px;
   line-height: 21px;
   color: #2e2e2e;
+}
+
+.passE-Mail {
+  height: 18.752519607543945px;
+  width: 20.99802017211914px;
+  border-radius: 0px;
+  position: absolute;
+  margin-left: 820px;
+  margin-top: 46px;
+  object-fit: cover;
+  display: none;
+}
+
+.errorE-Mail {
+  height: 18.752519607543945px;
+  width: 20.99802017211914px;
+  border-radius: 0px;
+  position: absolute;
+  margin-left: 820px;
+  margin-top: 46px;
+  object-fit: cover;
+  display: none;
 }
 
 .phone-number {
@@ -347,7 +424,6 @@ input::placeholder {
   background: #ffffff;
   border: 1px solid #bcbcbc;
   border-radius: 4px;
-  padding: 13px 16px 14px 16px;
 }
 
 .phone-number small {
@@ -359,8 +435,30 @@ input::placeholder {
   color: #2e2e2e;
 }
 
+.passPhoneNumber {
+  height: 18.752519607543945px;
+  width: 20.99802017211914px;
+  border-radius: 0px;
+  position: absolute;
+  margin-left: 770px;
+  margin-top: 44px;
+  object-fit: cover;
+  display: none;
+}
+
+.errorPhoneNumber {
+  height: 18.752519607543945px;
+  width: 20.99802017211914px;
+  border-radius: 0px;
+  position: absolute;
+  margin-left: 770px;
+  margin-top: 44px;
+  object-fit: cover;
+  display: none;
+}
+
 .next {
-  margin-top: 189px;
+  margin-top: 160px;
   margin-left: 799px;
   width: 151px;
   height: 48px;
@@ -373,4 +471,10 @@ input::placeholder {
   background: #6b40e3;
   border-radius: 4px;
   border-color: #6b40e3;
+}
+
+.redberrySmallLogo {
+  position: absolute;
+  margin-left: 1158px;
+  top: 994px;
 }

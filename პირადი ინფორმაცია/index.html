@@ -10,7 +10,7 @@
   <body>
     <div class="left">
       <header>
-        <a href=""
+        <a href="/Main/index.html"
           ><img
             src="Images/ArrowBack.png"
             alt="goBackArrow"
@@ -24,6 +24,7 @@
 
       <main>
         <form>
+          <!-- სახელის და გვარის შესაყვანი ლეიბლი და ინფუთი -->
           <div class="first-and-last-names">
             <div class="form-field">
               <label for="first-name">სახელი</label>
@@ -35,6 +36,16 @@
                 required
                 pattern="[ა-ჰ]+"
                 minlength="2"
+              />
+              <img
+                class="passName"
+                src="Images/GreenCheckMark.png"
+                alt="GreenCheckMark"
+              />
+              <img
+                class="errorName"
+                src="Images/ErrorSign.png"
+                alt="errorSign"
               />
               <small>მინიმუმ 2 ასო, ქართული ასოები</small>
             </div>
@@ -50,16 +61,28 @@
                 pattern="[ა-ჰ]+"
                 minlength="2"
               />
+              <img
+                class="passLastName"
+                src="Images/GreenCheckMark.png"
+                alt="GreenCheckMark"
+              />
+              <img
+                class="errorLastName"
+                src="Images/ErrorSign.png"
+                alt="errorSign"
+              />
               <small>მინიმუმ 2 ასო, ქართული ასოები</small>
             </div>
           </div>
 
+          <!-- სურათის ასატვირთი ლეიბლი და ინფუთი -->
           <div class="upload-image">
             <h2>პირადი ფოტოს ატვირთვა</h2>
             <label for="file-input">ატვირთვა</label>
             <input type="file" name="file-input" id="file-input" required />
           </div>
 
+          <!-- about me ინფორმაციის ლეიბლი და ინფუთი -->
           <div class="about">
             <h2>ჩემ შესახებ (არასავალდებულო)</h2>
             <textarea
@@ -69,8 +92,11 @@
             ></textarea>
           </div>
 
+          <!-- ელ-ფოსტის შესაყვანი ლეიბლი და ინფუთი -->
+
           <div class="e-mail">
             <label for="email">ელ.ფოსტა</label>
+
             <input
               type="email"
               id="email"
@@ -78,11 +104,22 @@
               placeholder="giorgi@redberry.ge"
               required
               pattern="[a-zA-Z0-9._%+-]+@redberry\.ge$"
-              required
             />
+            <img
+              class="passE-Mail"
+              src="Images/GreenCheckMark.png"
+              alt="GreenCheckMark"
+            />
+            <img
+              class="errorE-Mail"
+              src="Images/ErrorSign.png"
+              alt="errorSign"
+            />
+
             <small>უნდა მთავრდებოდეს @redberry.ge-ით</small>
           </div>
 
+          <!-- ტელეფონის ნომრის შესაყვანი ლეიბლი და ინფუთი -->
           <div class="phone-number">
             <label for="phone-number">მობილურის ნომერი</label>
             <input
@@ -91,16 +128,34 @@
               name="phone-number"
               placeholder="+995 571 36 06 36"
               required
-              pattern="\+995\s?\d{3}\s?\d{2}\s?\d{2}\s?\d{2}"
+              pattern="\+995\s[0-9]{3}\s[0-9]{2}\s[0-9]{2}\s[0-9]{2}"
+            />
+            <img
+              class="passPhoneNumber"
+              src="Images/GreenCheckMark.png"
+              alt="GreenCheckMark"
+            />
+            <img
+              class="errorPhoneNumber"
+              src="Images/ErrorSign.png"
+              alt="errorSign"
             />
             <small>უნდა აკმაყოფილებდეს ქართული მობილურის ნომრის ფორმატს</small>
           </div>
 
+          <!-- ღილაკი რომელსაც მომხმარებელი შემდეგ ფეიჯზე გადაყავს -->
           <button type="submit" class="next">შემდეგი</button>
         </form>
       </main>
     </div>
 
-    <div class="right"></div>
+    <div class="right">
+      <img
+        class="redberrySmallLogo"
+        src="Images/smallLogoFooter.png"
+        alt="redberryLogoSmall"
+      />
+    </div>
+    <script src="script.js"></script>
   </body>
 </html>
