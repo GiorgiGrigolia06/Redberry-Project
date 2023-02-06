@@ -548,7 +548,7 @@ input::placeholder {
 
 .aboutMeRight textarea {
   margin-top: 15px;
-  width: 420px;
+  width: 400px;
   height: 700px;
   font-style: normal;
   font-weight: 400;
@@ -571,4 +571,14 @@ input::placeholder {
   border-radius: 133px;
   margin-left: 400px;
   object-fit: cover;
+}
+
+footer {
+  position: absolute;
+}
+
+.smallRedberryLogo {
+  position: relative;
+  left: 1178px;
+  top: 994px;
 }

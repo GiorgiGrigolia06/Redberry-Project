@@ -148,6 +148,94 @@ inputFields.forEach((id) => {
   window.addEventListener("beforeunload", () => saveUserInput(id));
 });
 
+// Saving error/success signs and showing them after the page is refreshed.
+
+// For phone number //
+window.addEventListener("load", function () {
+  if (
+    inputPhoneNumber.value.match(
+      /\+995\s[0-9]{3}\s[0-9]{2}\s[0-9]{2}\s[0-9]{2}/
+    ) &&
+    inputPhoneNumber.value.length === 17
+  ) {
+    document.querySelector(".passPhoneNumber").style.display = "block";
+    inputPhoneNumber.style.border = "1px solid #98E37E";
+  } else if (inputPhoneNumber.value === "") {
+    document.querySelector(".errorPhoneNumber").style.display = "none";
+    document.querySelector(".passPhoneNumber").style.display = "none";
+  } else {
+    document.querySelector(".errorPhoneNumber").style.display = "block";
+    sessionStorage.setItem("errorPhoneNumberDisplay", "block");
+    inputPhoneNumber.style.border = "1px solid #EF5050";
+  }
+});
+
+// For E-mail //
+window.addEventListener("load", function () {
+  if (emailInput.value.match(/[a-zA-Z0-9._%+-]+@redberry\.ge$/)) {
+    passEMail.style.display = "block";
+    errorEMail.style.display = "none";
+    emailInput.style.border = "1px solid #98E37E";
+  } else if (emailInput.value === "") {
+    passEMail.style.display = "none";
+    errorEMail.style.display = "none";
+    emailInput.style.border = "1px solid #bcbcbc";
+  } else {
+    passEMail.style.display = "none";
+    errorEMail.style.display = "block";
+    emailInput.style.border = "1px solid #EF5050";
+  }
+});
+
+// For first name //
+window.addEventListener("load", function () {
+  if (
+    firstNameInput.value.length >= 2 &&
+    firstNameInput.value.match(/^[ა-ჰ]+$/)
+  ) {
+    firstNameInput.style.border = "1px solid #98E37E";
+    passName.style.display = "block";
+    errorName.style.display = "none";
+  } else if (firstNameInput.value === "") {
+    passName.style.display = "none";
+    errorName.style.display = "none";
+    firstNameInput.style.border = "1px solid #bcbcbc";
+  } else {
+    firstNameInput.style.border = "1px solid #EF5050";
+    passName.style.display = "none";
+    errorName.style.display = "block";
+  }
+});
+
+// For last name //
+window.addEventListener("load", function () {
+  if (
+    lastNameInput.value.length >= 2 &&
+    lastNameInput.value.match(/^[ა-ჰ]+$/)
+  ) {
+    lastNameInput.style.border = "1px solid #98E37E";
+    passLastName.style.display = "block";
+    errorLastName.style.display = "none";
+  } else if (lastNameInput.value === "") {
+    passLastName.style.display = "none";
+    errorLastName.style.display = "none";
+    lastNameInput.style.border = "1px solid #bcbcbc";
+  } else {
+    lastNameInput.style.border = "1px solid #EF5050";
+    passLastName.style.display = "none";
+    errorLastName.style.display = "block";
+  }
+});
+
+// For aboutMe textarea //
+window.addEventListener("load", function () {
+  if (aboutYouInput.value !== "") {
+    aboutYouInput.style.border = "1px solid #98E37E";
+  } else {
+    aboutYouInput.style.border = "1px solid #BCBCBC";
+  }
+});
+
 // End of Saving user input when page is refreshed //
 
 // Deleting user input when going back to main page //
@@ -184,6 +272,10 @@ document.querySelector(".goBackArrow").addEventListener("click", function () {
     document.querySelector(element).style.display = displayStyle;
     sessionStorage.setItem(`${element.slice(1)}Display`, displayStyle);
   }
+
+  previewImage.src = "";
+  previewImage.style.display = "none";
+  sessionStorage.removeItem("imageSrc");
 });
 
 // End of Deleting user input when going back to main page //
@@ -294,4 +386,54 @@ uploadedImage.addEventListener("change", function () {
   previewImage.src = objectURL;
 });
 
+window.addEventListener("load", function () {
+  if (this.sessionStorage.getItem("imageSrc")) {
+    previewImage.src = this.sessionStorage.getItem("imageSrc");
+    previewImage.style.display = "block";
+  }
+
+  this.document
+    .querySelector("#file-input")
+    .addEventListener("change", function () {
+      const file = this.files[0];
+      const reader = new FileReader();
+
+      reader.addEventListener("load", function () {
+        previewImage.src = reader.result;
+        previewImage.style.display = "block";
+        sessionStorage.setItem("imageSrc", reader.result);
+      });
+
+      reader.readAsDataURL(file);
+    });
+});
+
 // End of Showing uploaded image on the right side of the page //
+
+// Showing error signs if the "შემდეგი" button is pressed but input fields are empty or not valid //
+const nextButton = document.querySelector(".next");
+
+nextButton.addEventListener("click", function () {
+  if (firstNameInput.value === "") {
+    passName.style.display = "none";
+    errorName.style.display = "block";
+    firstNameInput.style.border = "1px solid #bcbcbc";
+  }
+  if (lastNameInput.value === "") {
+    passLastName.style.display = "none";
+    errorLastName.style.display = "block";
+    lastNameInput.style.border = "1px solid #bcbcbc";
+  }
+  if (emailInput.value === "") {
+    passEMail.style.display = "none";
+    errorEMail.style.display = "block";
+    emailInput.style.border = "1px solid #bcbcbc";
+  }
+  if (inputPhoneNumber.value === "") {
+    passPhoneNumber.style.display = "none";
+    errorPhoneNumber.style.display = "block";
+    inputPhoneNumber.style.border = "1px solid #bcbcbc";
+  }
+});
+
+// End of Showing error signs if the "შემდეგი" button is pressed but input fields are empty or not valid //
