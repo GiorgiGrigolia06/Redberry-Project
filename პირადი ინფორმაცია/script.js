@@ -125,11 +125,11 @@ inputPhoneNumber.addEventListener("input", function () {
 
 const saveUserInput = (id) => {
   const userInput = document.getElementById(id).value;
-  localStorage.setItem(id, userInput);
+  sessionStorage.setItem(id, userInput);
 };
 
 const retrieveUserInput = (id) => {
-  const savedInput = localStorage.getItem(id);
+  const savedInput = sessionStorage.getItem(id);
   if (savedInput) {
     document.getElementById(id).value = savedInput;
   }
@@ -159,15 +159,139 @@ document.querySelector(".goBackArrow").addEventListener("click", function () {
     "aboutYou",
     "email",
     "phone-number",
+    "rightName",
+    "rightLastName",
+    "mailP",
+    "phoneP",
+    "aboutMe",
   ];
 
+  const elementsToHide = {
+    "#aboutHeader": "none",
+    "#phoneLogo": "none",
+    "#mailLogo": "none",
+  };
+
   const removeUserInput = function (fieldId) {
-    localStorage.removeItem(fieldId);
+    sessionStorage.removeItem(fieldId);
   };
 
   window.addEventListener("beforeunload", function () {
     inputFields.forEach((field) => removeUserInput(field));
   });
+
+  for (const [element, displayStyle] of Object.entries(elementsToHide)) {
+    document.querySelector(element).style.display = displayStyle;
+    sessionStorage.setItem(`${element.slice(1)}Display`, displayStyle);
+  }
 });
 
 // End of Deleting user input when going back to main page //
+
+// Displaying and saving data on the right side of the page //
+
+function syncInputWithDisplay(inputElement, displayElement, imageId) {
+  inputElement.addEventListener("input", function () {
+    displayElement.textContent = inputElement.value;
+    sessionStorage.setItem(displayElement.id, inputElement.value);
+
+    // handle display of aboutHeader and aboutMe
+    const aboutHeader = document.querySelector("#aboutHeader");
+    const aboutMe = document.querySelector("#aboutMe");
+    if (inputAbout.value !== "") {
+      if (aboutHeader) {
+        aboutHeader.style.display = "block";
+        sessionStorage.setItem("aboutHeaderDisplay", "block");
+      }
+      if (aboutMe) {
+        aboutMe.style.display = "block";
+        sessionStorage.setItem("aboutMeDisplay", "block");
+      }
+    } else {
+      if (aboutHeader) {
+        aboutHeader.style.display = "none";
+        sessionStorage.setItem("aboutHeaderDisplay", "none");
+      }
+      if (aboutMe) {
+        aboutMe.style.display = "none";
+        sessionStorage.setItem("aboutMeDisplay", "none");
+      }
+    }
+
+    // handle display of image
+    if (inputElement.value !== "") {
+      if (imageId) {
+        const image = document.querySelector(`#${imageId}`);
+        if (image) {
+          image.style.display = "inline";
+          sessionStorage.setItem(`${imageId}Display`, "inline");
+        }
+      }
+    } else {
+      if (imageId) {
+        const image = document.querySelector(`#${imageId}`);
+        if (image) {
+          image.style.display = "none";
+          sessionStorage.setItem(`${imageId}Display`, "none");
+        }
+      }
+    }
+  });
+
+  window.addEventListener("load", function () {
+    if (sessionStorage.getItem(displayElement.id)) {
+      displayElement.textContent = sessionStorage.getItem(displayElement.id);
+    }
+    const aboutHeader = document.querySelector("#aboutHeader");
+    if (aboutHeader && sessionStorage.getItem("aboutHeaderDisplay")) {
+      aboutHeader.style.display = sessionStorage.getItem("aboutHeaderDisplay");
+    }
+    const aboutMe = document.querySelector("#aboutMe");
+    if (aboutMe && sessionStorage.getItem("aboutMeDisplay")) {
+      aboutMe.style.display = sessionStorage.getItem("aboutMeDisplay");
+    }
+    if (imageId && sessionStorage.getItem(`${imageId}Display`)) {
+      const image = document.querySelector(`#${imageId}`);
+      if (image) {
+        image.style.display = sessionStorage.getItem(`${imageId}Display`);
+      }
+    }
+  });
+}
+
+const inputFirstName = document.querySelector("#first-name");
+const displayRightName = document.querySelector("#rightName");
+
+const inputLastName = document.querySelector("#last-name");
+const displayRightLastName = document.querySelector("#rightLastName");
+
+const inputMail = document.querySelector("#email");
+const displayRightEmail = document.querySelector("#rightMail p");
+
+const displayRightNumber = document.querySelector("#rightNumber p");
+
+const inputAbout = document.querySelector("#aboutYou");
+const displayRightAbout = document.querySelector("#aboutMe");
+
+syncInputWithDisplay(inputFirstName, displayRightName);
+syncInputWithDisplay(inputLastName, displayRightLastName);
+
+syncInputWithDisplay(inputMail, displayRightEmail, "mailLogo");
+syncInputWithDisplay(inputPhoneNumber, displayRightNumber, "phoneLogo");
+
+syncInputWithDisplay(inputAbout, displayRightAbout);
+
+// End of Creating the right side of the page //
+
+// Showing uploaded image on the right side of the page //
+
+const uploadedImage = document.querySelector("#file-input");
+const previewImage = document.querySelector("#preview-image");
+
+uploadedImage.addEventListener("change", function () {
+  const file = this.files[0];
+  const objectURL = URL.createObjectURL(file);
+  previewImage.src = objectURL;
+});
+
+// End of Showing uploaded image on the right side of the page //

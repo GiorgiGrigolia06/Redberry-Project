@@ -137,6 +137,7 @@ table {
 body {
   background: rgba(255, 255, 255, 1);
   font-family: "HNeue";
+  display: flex;
 }
 
 input,
@@ -473,8 +474,101 @@ input::placeholder {
   border-color: #6b40e3;
 }
 
-.redberrySmallLogo {
+.right {
+  background-color: #ffffff;
+  width: 822px;
+  height: 1080px;
+}
+
+.userInfo {
+  margin-left: 80px;
+  margin-top: 68px;
+}
+
+.names {
+  display: flex;
+  gap: 20px;
+}
+
+#rightName,
+#rightLastName {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 34px;
+  line-height: 42px;
+  color: #f93b1d;
+}
+
+.mailNumber {
+  margin-top: 17px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.emailLogo,
+.phoneLogo {
+  height: 16.666664123535156px;
+  width: 16.666664123535156px;
+}
+
+#rightMail,
+#rightNumber {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  color: #1a1a1a;
+  display: flex;
+  gap: 10px;
+}
+
+#phoneLogo {
+  margin-top: 3px;
+  display: none;
+}
+
+#mailLogo {
+  margin-top: 4px;
+  display: none;
+}
+
+.aboutMeRight {
+  margin-top: 34px;
+}
+
+.aboutMeRight h3 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+  color: #f93b1d;
+  display: none;
+}
+
+.aboutMeRight textarea {
+  margin-top: 15px;
+  width: 420px;
+  height: 700px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  color: #000000;
+  border: none;
+  outline: none;
+  resize: none;
+  background-color: transparent;
+  padding: 0;
+  overflow: scroll;
+  display: none;
+}
+
+#preview-image {
   position: absolute;
-  margin-left: 1158px;
-  top: 994px;
+  width: 246px;
+  height: 246px;
+  border-radius: 133px;
+  margin-left: 400px;
+  object-fit: cover;
 }

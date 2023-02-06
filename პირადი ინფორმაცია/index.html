@@ -149,13 +149,33 @@
       </main>
     </div>
 
-    <div class="right">
-      <img
-        class="redberrySmallLogo"
-        src="Images/smallLogoFooter.png"
-        alt="redberryLogoSmall"
-      />
+    <div class="right" id="displayContainer">
+      <div class="userInfo">
+        <div class="uploadedImage">
+          <img id="preview-image" />
+        </div>
+        <div class="names">
+          <h1 id="rightName"></h1>
+          <h1 id="rightLastName"></h1>
+        </div>
+
+        <div class="mailNumber">
+          <div id="rightMail">
+            <img id="mailLogo" src="Images/emailSign.png" alt="emailLogo" />
+            <p id="mailP"></p>
+          </div>
+          <div id="rightNumber">
+            <img id="phoneLogo" src="Images/phoneSign.png" alt="phoneLogo" />
+            <p id="phoneP"></p>
+          </div>
+        </div>
+        <div class="aboutMeRight">
+          <h3 class="aboutHeader" id="aboutHeader">ჩემ შესახებ</h3>
+          <textarea name="aboutMe" id="aboutMe" readonly></textarea>
+        </div>
+      </div>
     </div>
+
     <script src="script.js"></script>
   </body>
 </html>
