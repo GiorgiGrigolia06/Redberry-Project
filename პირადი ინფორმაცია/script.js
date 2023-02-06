@@ -14,14 +14,17 @@ firstNameInput.addEventListener("input", () => {
     firstNameInput.style.border = "1px solid #98E37E";
     passName.style.display = "block";
     errorName.style.display = "none";
+    document.querySelector(".redFName").style.color = "#1A1A1A";
   } else if (firstNameInput.value === "") {
     passName.style.display = "none";
     errorName.style.display = "none";
     firstNameInput.style.border = "1px solid #bcbcbc";
+    document.querySelector(".redFName").style.color = "#1A1A1A";
   } else {
     firstNameInput.style.border = "1px solid #EF5050";
     passName.style.display = "none";
     errorName.style.display = "block";
+    document.querySelector(".redFName").style.color = "#E52F2F";
   }
 });
 
@@ -41,14 +44,17 @@ lastNameInput.addEventListener("input", () => {
     lastNameInput.style.border = "1px solid #98E37E";
     passLastName.style.display = "block";
     errorLastName.style.display = "none";
+    document.querySelector(".redLName").style.color = "#1A1A1A";
   } else if (lastNameInput.value === "") {
     passLastName.style.display = "none";
     errorLastName.style.display = "none";
     lastNameInput.style.border = "1px solid #bcbcbc";
+    document.querySelector(".redLName").style.color = "#1A1A1A";
   } else {
     lastNameInput.style.border = "1px solid #EF5050";
     passLastName.style.display = "none";
     errorLastName.style.display = "block";
+    document.querySelector(".redLName").style.color = "#E52F2F";
   }
 });
 
@@ -79,14 +85,17 @@ emailInput.addEventListener("input", () => {
     passEMail.style.display = "block";
     errorEMail.style.display = "none";
     emailInput.style.border = "1px solid #98E37E";
+    document.querySelector(".redEmail").style.color = "#1A1A1A";
   } else if (emailInput.value === "") {
     passEMail.style.display = "none";
     errorEMail.style.display = "none";
     emailInput.style.border = "1px solid #bcbcbc";
+    document.querySelector(".redEmail").style.color = "#1A1A1A";
   } else {
     passEMail.style.display = "none";
     errorEMail.style.display = "block";
     emailInput.style.border = "1px solid #EF5050";
+    document.querySelector(".redEmail").style.color = "#E52F2F";
   }
 });
 
@@ -103,6 +112,7 @@ inputPhoneNumber.addEventListener("input", function () {
     passPhoneNumber.style.display = "none";
     errorPhoneNumber.style.display = "none";
     inputPhoneNumber.style.border = "1px solid #bcbcbc";
+    document.querySelector(".redPhoneNumber").style.color = "#1A1A1A";
   } else if (
     inputPhoneNumber.value.match(
       /\+995\s[0-9]{3}\s[0-9]{2}\s[0-9]{2}\s[0-9]{2}/
@@ -112,10 +122,12 @@ inputPhoneNumber.addEventListener("input", function () {
     passPhoneNumber.style.display = "block";
     errorPhoneNumber.style.display = "none";
     inputPhoneNumber.style.border = "1px solid #98E37E";
+    document.querySelector(".redPhoneNumber").style.color = "#1A1A1A";
   } else {
     passPhoneNumber.style.display = "none";
     errorPhoneNumber.style.display = "block";
     inputPhoneNumber.style.border = "1px solid #EF5050";
+    document.querySelector(".redPhoneNumber").style.color = "#E52F2F";
   }
 });
 
@@ -167,6 +179,7 @@ window.addEventListener("load", function () {
     document.querySelector(".errorPhoneNumber").style.display = "block";
     sessionStorage.setItem("errorPhoneNumberDisplay", "block");
     inputPhoneNumber.style.border = "1px solid #EF5050";
+    document.querySelector(".redPhoneNumber").style.color = "#E52F2F";
   }
 });
 
@@ -184,6 +197,7 @@ window.addEventListener("load", function () {
     passEMail.style.display = "none";
     errorEMail.style.display = "block";
     emailInput.style.border = "1px solid #EF5050";
+    document.querySelector(".redEmail").style.color = "#E52F2F";
   }
 });
 
@@ -204,6 +218,8 @@ window.addEventListener("load", function () {
     firstNameInput.style.border = "1px solid #EF5050";
     passName.style.display = "none";
     errorName.style.display = "block";
+    document.querySelector(".redFName").style.color = "#E52F2F";
+    document.querySelector(".redFName").style.color = "#E52F2F";
   }
 });
 
@@ -224,6 +240,7 @@ window.addEventListener("load", function () {
     lastNameInput.style.border = "1px solid #EF5050";
     passLastName.style.display = "none";
     errorLastName.style.display = "block";
+    document.querySelector(".redLName").style.color = "#E52F2F";
   }
 });
 
@@ -417,22 +434,22 @@ nextButton.addEventListener("click", function () {
   if (firstNameInput.value === "") {
     passName.style.display = "none";
     errorName.style.display = "block";
-    firstNameInput.style.border = "1px solid #bcbcbc";
+    firstNameInput.style.border = "1px solid #EF5050";
   }
   if (lastNameInput.value === "") {
     passLastName.style.display = "none";
     errorLastName.style.display = "block";
-    lastNameInput.style.border = "1px solid #bcbcbc";
+    lastNameInput.style.border = "1px solid #EF5050";
   }
   if (emailInput.value === "") {
     passEMail.style.display = "none";
     errorEMail.style.display = "block";
-    emailInput.style.border = "1px solid #bcbcbc";
+    emailInput.style.border = "1px solid #EF5050";
   }
   if (inputPhoneNumber.value === "") {
     passPhoneNumber.style.display = "none";
     errorPhoneNumber.style.display = "block";
-    inputPhoneNumber.style.border = "1px solid #bcbcbc";
+    inputPhoneNumber.style.border = "1px solid #EF5050";
   }
 });
 
