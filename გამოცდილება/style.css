@@ -154,9 +154,6 @@ textarea {
 }
 
 input[type="text"],
-input[type="number"],
-input[type="email"],
-input[type="tel"],
 textarea {
   padding: 13px 16px 14px 16px;
 }
@@ -182,7 +179,7 @@ header {
   font-weight: 400;
   line-height: 24px;
   color: rgba(26, 26, 26, 1);
-  margin-left: 614px;
+  margin-left: 616px;
 }
 
 .goBackArrow {
@@ -193,135 +190,168 @@ header {
   top: 57px;
 }
 
-.first-and-last-names {
-  display: flex;
-  margin-top: 77px;
-  margin-left: 139.9px;
-  gap: 56px;
-}
-
-.form-field {
-  display: flex;
-  flex-direction: column;
-}
-
-.first-and-last-names input {
-  margin-bottom: 8px;
-  box-sizing: border-box;
-  width: 377px;
-  height: 48px;
-  background: #ffffff;
-  border: 1px solid #bcbcbc;
-  border-radius: 4px;
-}
-
-.first-and-last-names small {
-  font-size: 14px;
-  line-height: 21px;
-  font-weight: 300;
-  color: #2e2e2e;
-}
-
 input::placeholder {
   font-weight: 400;
   font-size: 16px;
   line-height: 21px;
 }
 
-.first-and-last-names label {
-  font-weight: bold;
-  width: 371px;
+.position {
+  display: flex;
+  flex-direction: column;
+  margin-top: 77px;
+  margin-left: 139.9px;
+}
+
+.position label {
   font-style: normal;
+  font-weight: bold;
   font-size: 16px;
   line-height: 21px;
   color: #000000;
   margin-bottom: 8px;
 }
 
-.passName {
-  height: 16.5px;
-  width: 16.5px;
-  border-radius: 0px;
-  position: absolute;
-  margin-top: 45px;
-  margin-left: 340px;
-  display: none;
-  object-fit: cover;
-}
-
-.errorName {
-  height: 16.5px;
-  width: 16.5px;
-  border-radius: 0px;
-  position: absolute;
-  margin-top: 45px;
-  margin-left: 340px;
-  display: none;
-}
-
-.passLastName {
-  height: 16.5px;
-  width: 16.5px;
-  border-radius: 0px;
-  position: absolute;
-  margin-top: 45px;
-  margin-left: 340px;
-  display: none;
-  object-fit: cover;
-}
-
-.errorLastName {
-  height: 16.5px;
-  width: 16.5px;
-  border-radius: 0px;
-  position: absolute;
-  margin-top: 45px;
-  margin-left: 340px;
-  display: none;
-}
-
-.upload-image {
-  margin-top: 54px;
-  margin-left: 139.9px;
-  display: flex;
-}
-
-.upload-image h2 {
-  width: 232px;
-  height: 22px;
-  font-weight: bold;
-  font-size: 18px;
-  line-height: 22px;
-  color: #1a1a1a;
-}
-
-.upload-image label {
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 17px;
-  font-style: normal;
-  background-color: #0e80bf;
-  color: white;
-  padding: 4px 19px 6px 19px;
+.position input {
+  width: 810px;
+  background: #ffffff;
+  border: 1px solid #bcbcbc;
   border-radius: 4px;
-  cursor: pointer;
-  width: 107px;
-  height: 27px;
-  margin-left: 19px;
 }
 
-.upload-image input[type="file"] {
-  opacity: 0;
+.position small {
+  margin-top: 8px;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 21px;
+  color: #2e2e2e;
 }
 
-.about {
+.passPos {
+  height: 18.752519607543945px;
+  width: 20.99802017211914px;
+  border-radius: 0px;
+  position: absolute;
+  margin-left: 820px;
+  margin-top: 46px;
+  object-fit: cover;
+  display: none;
+}
+
+.errorPos {
+  height: 18.752519607543945px;
+  width: 20.99802017211914px;
+  border-radius: 0px;
+  position: absolute;
+  margin-left: 820px;
+  margin-top: 46px;
+  object-fit: cover;
+  display: none;
+}
+
+.employer {
+  display: flex;
+  flex-direction: column;
+  margin-top: 29px;
+  margin-left: 139.9px;
+  width: 810px;
+}
+
+.employer label {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 21px;
+  color: black;
+  margin-bottom: 8px;
+}
+
+.employer input {
+  height: 48px;
+  background: #ffffff;
+  border: 1px solid #bcbcbc;
+  border-radius: 4px;
+}
+
+.employer small {
+  margin-top: 8px;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 21px;
+  color: #2e2e2e;
+}
+
+.passEmployer {
+  height: 18.752519607543945px;
+  width: 20.99802017211914px;
+  border-radius: 0px;
+  position: absolute;
+  margin-left: 770px;
+  margin-top: 44px;
+  object-fit: cover;
+  display: none;
+}
+
+.errorEmployer {
+  height: 18.752519607543945px;
+  width: 20.99802017211914px;
+  border-radius: 0px;
+  position: absolute;
+  margin-left: 770px;
+  margin-top: 44px;
+  object-fit: cover;
+  display: none;
+}
+
+.dates {
+  display: flex;
+  gap: 56px;
+  margin-top: 31px;
+  margin-left: 139.9px;
+}
+
+.start,
+.end {
+  display: flex;
+  flex-direction: column;
+}
+
+.start label,
+.end label {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 21px;
+  color: black;
+  margin-bottom: 8px;
+}
+
+.start input,
+.end input {
+  margin-top: 8px;
+  width: 377px;
+  height: 48px;
+  background: #ffffff;
+  border: 1px solid #bcbcbc;
+  border-radius: 4px;
+  padding: 13px 16px 14px 16px;
+  border-radius: 4px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.description {
   display: flex;
   flex-direction: column;
   margin-left: 139.9px;
+  width: 810px;
   margin-top: 49px;
+  padding-bottom: 58px;
+  border-bottom: 1px solid rgba(193, 193, 193, 1);
 }
 
-.about h2 {
+.description h2 {
   font-style: normal;
   font-weight: bold;
   font-size: 16px;
@@ -329,7 +359,7 @@ input::placeholder {
   color: #000000;
 }
 
-.about textarea {
+.description textarea {
   margin-top: 8px;
   width: 810px;
   height: 103px;
@@ -340,7 +370,7 @@ input::placeholder {
   resize: none;
 }
 
-.about textarea::placeholder {
+.description textarea::placeholder {
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -348,122 +378,43 @@ input::placeholder {
   color: rgba(0, 0, 0, 0.6);
 }
 
-.e-mail {
-  display: flex;
-  flex-direction: column;
-  margin-top: 33px;
-  margin-left: 139.9px;
-}
-
-.e-mail label {
-  font-style: normal;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 21px;
-  color: #000000;
-  margin-bottom: 8px;
-}
-
-.e-mail input {
-  width: 810px;
-  background: #ffffff;
-  border: 1px solid #bcbcbc;
-  border-radius: 4px;
-}
-
-.e-mail small {
-  margin-top: 8px;
-  font-style: normal;
-  font-weight: 300;
-  font-size: 14px;
-  line-height: 21px;
-  color: #2e2e2e;
-}
-
-.passE-Mail {
-  height: 18.752519607543945px;
-  width: 20.99802017211914px;
-  border-radius: 0px;
-  position: absolute;
-  margin-left: 820px;
-  margin-top: 46px;
-  object-fit: cover;
-  display: none;
-}
-
-.errorE-Mail {
-  height: 18.752519607543945px;
-  width: 20.99802017211914px;
-  border-radius: 0px;
-  position: absolute;
-  margin-left: 820px;
-  margin-top: 46px;
-  object-fit: cover;
-  display: none;
-}
-
-.phone-number {
-  display: flex;
-  flex-direction: column;
-  margin-top: 29px;
-  margin-left: 139.9px;
-  width: 810px;
-}
-
-.phone-number label {
-  font-style: normal;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 21px;
-  color: black;
-  margin-bottom: 8px;
-}
-
-.phone-number input {
+.moreExperience {
+  background-color: rgba(98, 161, 235, 1);
+  color: rgba(255, 255, 255, 1);
+  padding: 14px 21px;
+  width: 289px;
   height: 48px;
-  background: #ffffff;
-  border: 1px solid #bcbcbc;
+  font-size: 16px;
   border-radius: 4px;
+  border: none;
+  margin-top: 45px;
+  margin-left: 139px;
+  line-height: 20px;
 }
 
-.phone-number small {
-  margin-top: 8px;
-  font-style: normal;
-  font-weight: 300;
-  font-size: 14px;
-  line-height: 21px;
-  color: #2e2e2e;
+.purpleButtons {
+  display: flex;
+  margin-top: 115px;
+  gap: 547px;
 }
 
-.passPhoneNumber {
-  height: 18.752519607543945px;
-  width: 20.99802017211914px;
-  border-radius: 0px;
-  position: absolute;
-  margin-left: 770px;
-  margin-top: 44px;
-  object-fit: cover;
-  display: none;
-}
-
-.errorPhoneNumber {
-  height: 18.752519607543945px;
-  width: 20.99802017211914px;
-  border-radius: 0px;
-  position: absolute;
-  margin-left: 770px;
-  margin-top: 44px;
-  object-fit: cover;
-  display: none;
+.back {
+  display: block;
+  background-color: rgba(107, 64, 227, 1);
+  color: rgba(255, 255, 255, 1);
+  padding: 14px 35px;
+  font-size: 16px;
+  line-height: 20px;
+  border-radius: 4px;
+  border: none;
+  margin-left: 139px;
+  height: 48px;
+  width: 113px;
 }
 
 .next {
-  margin-top: 160px;
-  margin-left: 799px;
   width: 151px;
   height: 48px;
-  right: 972px;
-  bottom: 65px;
   color: #ffffff;
   font-weight: 500;
   font-size: 16px;
