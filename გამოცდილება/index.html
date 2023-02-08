@@ -23,87 +23,96 @@
       </header>
 
       <main>
-        <form>
-          <!-- თანამდებობის შესაყვანი ლეიბლი და ინფუთი -->
+        <div class="forms">
+          <form>
+            <!-- თანამდებობის შესაყვანი ლეიბლი და ინფუთი -->
 
-          <div class="position">
-            <label class="redEmail" for="pos">თანამდებობა</label>
+            <div class="position">
+              <label class="redPos" for="pos">თანამდებობა</label>
 
-            <input
-              type="text"
-              id="pos"
-              name="pos"
-              placeholder="დეველოპერი, დიზაინერი, ა.შ."
-              required
-              minlength="2"
-            />
-            <img
-              class="passPos"
-              src="Images/GreenCheckMark.png"
-              alt="GreenCheckMark"
-            />
-            <img class="errorPos" src="Images/ErrorSign.png" alt="errorSign" />
-            <small>მინიმუმ 2 სიმბოლო</small>
-          </div>
-
-          <!-- დამსაქმებლის შესაყვანი ლეიბლი და ინფუთი -->
-          <div class="employer">
-            <label class="redPhoneNumber" for="employer">დამსაქმებელი</label>
-            <input
-              type="text"
-              id="employer"
-              name="employer"
-              placeholder="დამსაქმებელი"
-              required
-              minlength="2"
-            />
-            <img
-              class="passEmployer"
-              src="Images/GreenCheckMark.png"
-              alt="GreenCheckMark"
-            />
-            <img
-              class="errorEmployer"
-              src="Images/ErrorSign.png"
-              alt="errorSign"
-            />
-            <small>მინიმუმ 2 სიმბოლო</small>
-          </div>
-
-          <div class="dates">
-            <div class="start">
-              <label for="startDate">დაწყების რიცხვი</label>
-              <input type="date" id="startDate" required />
+              <input
+                type="text"
+                id="pos"
+                name="pos"
+                placeholder="დეველოპერი, დიზაინერი, ა.შ."
+                required
+                minlength="2"
+              />
+              <img
+                class="passPos"
+                src="Images/GreenCheckMark.png"
+                alt="GreenCheckMark"
+              />
+              <img
+                class="errorPos"
+                src="Images/ErrorSign.png"
+                alt="errorSign"
+              />
+              <small>მინიმუმ 2 სიმბოლო</small>
             </div>
 
-            <div class="end">
-              <label for="endDate">დამთავრების რიცხვი</label>
-              <input type="date" id="endDate" required />
+            <!-- დამსაქმებლის შესაყვანი ლეიბლი და ინფუთი -->
+            <div class="employer">
+              <label class="redEmployer" for="employer">დამსაქმებელი</label>
+              <input
+                type="text"
+                id="employer"
+                name="employer"
+                placeholder="დამსაქმებელი"
+                required
+                minlength="2"
+              />
+              <img
+                class="passEmployer"
+                src="Images/GreenCheckMark.png"
+                alt="GreenCheckMark"
+              />
+              <img
+                class="errorEmployer"
+                src="Images/ErrorSign.png"
+                alt="errorSign"
+              />
+              <small>მინიმუმ 2 სიმბოლო</small>
             </div>
-          </div>
 
-          <!-- აღწერის ლეიბლი და ინფუთი -->
-          <div class="description">
-            <h2>აღწერა</h2>
-            <textarea
-              name="description"
-              id="description"
-              placeholder="როლი თანამდებობაზე და ზოგადი აღწერა"
-              required
-            ></textarea>
-          </div>
+            <div class="dates">
+              <div class="start">
+                <label class="startDateHeader" for="startDate"
+                  >დაწყების რიცხვი</label
+                >
+                <input type="date" id="startDate" required />
+              </div>
 
-          <div class="allButtons">
-            <button class="moreExperience" type="button">
-              მეტი გამოცდილების დამატება
-            </button>
-
-            <div class="purpleButtons">
-              <button class="back" type="button">უკან</button>
-              <button type="submit" class="next">შემდეგი</button>
+              <div class="end">
+                <label class="endDateHeader" for="endDate"
+                  >დამთავრების რიცხვი</label
+                >
+                <input type="date" id="endDate" required />
+              </div>
             </div>
+
+            <!-- აღწერის ლეიბლი და ინფუთი -->
+            <div class="description">
+              <h2 class="descriptionHeader">აღწერა</h2>
+              <textarea
+                name="description"
+                id="description"
+                placeholder="როლი თანამდებობაზე და ზოგადი აღწერა"
+                required
+              ></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="allButtons">
+          <button class="moreExperience" type="button">
+            მეტი გამოცდილების დამატება
+          </button>
+
+          <div class="purpleButtons">
+            <button class="back" type="button">უკან</button>
+            <button type="submit" class="next">შემდეგი</button>
           </div>
-        </form>
+        </div>
       </main>
     </div>
 
@@ -141,5 +150,6 @@
         alt="smallRedberryLogo"
       />
     </footer>
+    <script src="script.js"></script>
   </body>
 </html>

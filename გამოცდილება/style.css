@@ -233,7 +233,7 @@ input::placeholder {
   width: 20.99802017211914px;
   border-radius: 0px;
   position: absolute;
-  margin-left: 820px;
+  margin-left: 775px;
   margin-top: 46px;
   object-fit: cover;
   display: none;
@@ -244,7 +244,7 @@ input::placeholder {
   width: 20.99802017211914px;
   border-radius: 0px;
   position: absolute;
-  margin-left: 820px;
+  margin-left: 775px;
   margin-top: 46px;
   object-fit: cover;
   display: none;
@@ -288,7 +288,7 @@ input::placeholder {
   width: 20.99802017211914px;
   border-radius: 0px;
   position: absolute;
-  margin-left: 770px;
+  margin-left: 775px;
   margin-top: 44px;
   object-fit: cover;
   display: none;
@@ -299,7 +299,7 @@ input::placeholder {
   width: 20.99802017211914px;
   border-radius: 0px;
   position: absolute;
-  margin-left: 770px;
+  margin-left: 775px;
   margin-top: 44px;
   object-fit: cover;
   display: none;
@@ -410,6 +410,7 @@ input::placeholder {
   margin-left: 139px;
   height: 48px;
   width: 113px;
+  margin-bottom: 55px;
 }
 
 .next {
@@ -531,4 +532,8 @@ footer {
   position: relative;
   left: 1178px;
   top: 994px;
+}
+
+.new-form {
+  margin-top: -40px;
 }
