@@ -550,3 +550,75 @@ document
   });
 
 // End of Adding a new form when pressing a button //
+
+// Showing saved data from previous page //
+
+window.addEventListener("load", function () {
+  const firstName = sessionStorage.getItem("firstName");
+  const lastName = sessionStorage.getItem("lastName");
+  const email = sessionStorage.getItem("email");
+  const phoneNumber = sessionStorage.getItem("phoneNumber");
+  const about = sessionStorage.getItem("about");
+  const image = sessionStorage.getItem("imageSrc");
+  const aboutHeader = sessionStorage.getItem("aboutHeader");
+
+  document.querySelector("#preview-image").src = image;
+  document.querySelector("#rightName").textContent = firstName;
+  document.querySelector("#rightLastName").textContent = lastName;
+  document.querySelector("#mailP").textContent = email;
+  document.querySelector("#phoneP").textContent = phoneNumber;
+  document.querySelector("#aboutMe").textContent = about;
+  document.querySelector(".aboutHeader").style.display = aboutHeader;
+});
+
+// End of Showing saved data from previous page //
+
+// From left to right //
+
+const posInputLeft = document.querySelector("#pos");
+const employerInputLeft = document.querySelector("#employer");
+const startDateInputLeft = document.querySelector("#startDate");
+const endDateInputLeft = document.querySelector("#endDate");
+const descriptionInpuLeft = document.querySelector("#description");
+
+const posInputRight = document.querySelector(".posRight");
+const employerInputRight = document.querySelector(".employerRight");
+const startDateInputRight = document.querySelector(".startdateRight");
+const endDateInputRight = document.querySelector(".endDateRight");
+const descriptionInputRight = document.querySelector(".expDescription");
+const experienceHeaderRight = document.querySelector(".experienceHeader");
+
+const elements = [
+  posInputLeft,
+  employerInputLeft,
+  startDateInputLeft,
+  endDateInputLeft,
+  descriptionInpuLeft,
+];
+
+const keys = ["pos", "employer", "startDate", "endDate", "description"];
+
+const displayElements = [
+  posInputRight,
+  employerInputRight,
+  startDateInputRight,
+  endDateInputRight,
+  descriptionInputRight,
+];
+
+for (let i = 0; i < elements.length; i++) {
+  elements[i].addEventListener("input", function () {
+    displayElements[i].innerHTML = elements[i].value;
+    localStorage.setItem(keys[i], elements[i].value);
+  });
+
+  elements[i].value = localStorage.getItem(keys[i]) || "";
+  displayElements[i].innerHTML = elements[i].value;
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  experienceHeaderRight.style.display =
+    posInputLeft.value !== "" ? "block" : "none";
+});
+
+// End of From left to right //

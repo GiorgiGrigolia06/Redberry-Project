@@ -314,6 +314,25 @@ input::placeholder {
   opacity: 0;
 }
 
+.passImage {
+  height: 16.5px;
+  width: 16.5px;
+  position: absolute;
+  display: none;
+  object-fit: cover;
+  margin-top: 6px;
+  margin-left: 365px;
+}
+
+.errorImage {
+  height: 16.5px;
+  width: 16.5px;
+  position: absolute;
+  display: none;
+  margin-top: 6px;
+  margin-left: 365px;
+}
+
 .about {
   display: flex;
   flex-direction: column;
@@ -536,7 +555,7 @@ input::placeholder {
   margin-top: 34px;
 }
 
-.aboutMeRight h3 {
+.aboutHeader {
   font-style: normal;
   font-weight: 700;
   font-size: 18px;
@@ -561,6 +580,13 @@ input::placeholder {
   padding: 0;
   overflow: scroll;
   display: none;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.aboutMeRight textarea::-webkit-scrollbar {
+  width: 0;
+  background-color: transparent;
 }
 
 #preview-image {

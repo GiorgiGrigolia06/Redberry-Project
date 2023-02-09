@@ -396,6 +396,15 @@ syncInputWithDisplay(inputAbout, displayRightAbout);
 
 const uploadedImage = document.querySelector("#file-input");
 const previewImage = document.querySelector("#preview-image");
+const imagePass = document.querySelector(".passImage");
+const imageError = document.querySelector(".errorImage");
+
+uploadedImage.addEventListener("change", function () {
+  if (uploadedImage.value) {
+    imagePass.style.display = "block";
+    imageError.style.display = "none";
+  }
+});
 
 uploadedImage.addEventListener("change", function () {
   const file = this.files[0];
@@ -450,6 +459,43 @@ nextButton.addEventListener("click", function () {
     passPhoneNumber.style.display = "none";
     errorPhoneNumber.style.display = "block";
     inputPhoneNumber.style.border = "1px solid #EF5050";
+  }
+
+  if (!uploadedImage.value) {
+    imageError.style.display = "block";
+    imagePass.style.display = "none";
+  }
+
+  if (
+    firstNameInput.value.length >= 2 &&
+    firstNameInput.value.match(/^[ა-ჰ]+$/) &&
+    lastNameInput.value.length >= 2 &&
+    lastNameInput.value.match(/^[ა-ჰ]+$/) &&
+    emailInput.value.match(/[a-zA-Z0-9._%+-]+@redberry\.ge$/) &&
+    inputPhoneNumber.value.match(
+      /\+995\s[0-9]{3}\s[0-9]{2}\s[0-9]{2}\s[0-9]{2}/
+    ) &&
+    inputPhoneNumber.value.length === 17 &&
+    uploadedImage.value
+  ) {
+    ///////////////////////////////////////////////////////////////
+    const firstName = document.querySelector("#first-name").value;
+    const lastName = document.querySelector("#last-name").value;
+    const email = document.querySelector("#email").value;
+    const phoneNumber = document.querySelector("#phone-number").value;
+    const about = aboutYouInput.value;
+    const aboutH3 = document.querySelector(".aboutHeader");
+
+    sessionStorage.setItem("firstName", firstName);
+    sessionStorage.setItem("lastName", lastName);
+    sessionStorage.setItem("email", email);
+    sessionStorage.setItem("phoneNumber", phoneNumber);
+    sessionStorage.setItem("about", about);
+    sessionStorage.setItem("aboutHeader", aboutH3.style.display);
+
+    ////////////////////////////////////////////////////////
+    window.location.href = "../გამოცდილება/index.html";
+    ///////////////////////////////////////////////////////////////////////////////////
   }
 });
 
