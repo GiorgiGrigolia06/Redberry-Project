@@ -80,7 +80,7 @@
           <!-- სურათის ასატვირთი ლეიბლი და ინფუთი -->
           <div class="upload-image">
             <h2>პირადი ფოტოს ატვირთვა</h2>
-            <label class="imageClass" for="file-input">ატვირთვა</label>
+            <label class="imageClass" for="INF-image">ატვირთვა</label>
             <img
               class="passImage"
               src="Images/GreenCheckMark.png"
@@ -91,7 +91,8 @@
               src="Images/ErrorSign.png"
               alt="errorSign"
             />
-            <input type="file" name="file-input" id="INF-image" required />
+            <input type="file" name="INF-image" id="INF-image" image/* required
+            />
           </div>
 
           <!-- about me ინფორმაციის ლეიბლი და ინფუთი -->
@@ -111,6 +112,7 @@
             <label class="redEmail" for="email">ელ.ფოსტა</label>
 
             <input
+              oninput="emailOnInput()"
               type="email"
               id="INF-email"
               name="email"
@@ -138,6 +140,7 @@
               >მობილურის ნომერი</label
             >
             <input
+              oninput="numberOnInput()"
               type="tel"
               id="INF-mobileNumber"
               name="phone-number"
@@ -159,7 +162,7 @@
           </div>
 
           <!-- ღილაკი რომელსაც მომხმარებელი შემდეგ ფეიჯზე გადაყავს -->
-          <button type="button" class="next">შემდეგი</button>
+          <button type="button" class="next" onclick="goNext()">შემდეგი</button>
         </form>
       </main>
     </div>

@@ -127,6 +127,7 @@ table {
 *:before,
 *:after {
   box-sizing: border-box;
+  font-family: "HNeue";
 }
 
 @font-face {
@@ -145,20 +146,13 @@ textarea {
   font-size: 16px;
   line-height: 21px;
   color: #000000;
+  padding: 13px 16px 14px 16px;
 }
 
 .left {
   width: 1098px;
   height: 1080px;
   background-color: #f9f9f9;
-}
-
-input[type="text"],
-input[type="number"],
-input[type="email"],
-input[type="tel"],
-textarea {
-  padding: 13px 16px 14px 16px;
 }
 
 header {
@@ -249,13 +243,13 @@ input::placeholder {
   object-fit: cover;
 }
 
-.errorName {
+.errorFirstName {
   height: 16.5px;
   width: 16.5px;
   border-radius: 0px;
   position: absolute;
   margin-top: 45px;
-  margin-left: 340px;
+  margin-left: 385px;
   display: none;
 }
 
@@ -276,7 +270,7 @@ input::placeholder {
   border-radius: 0px;
   position: absolute;
   margin-top: 45px;
-  margin-left: 340px;
+  margin-left: 385px;
   display: none;
 }
 
@@ -404,7 +398,7 @@ input::placeholder {
   width: 20.99802017211914px;
   border-radius: 0px;
   position: absolute;
-  margin-left: 820px;
+  margin-left: 770px;
   margin-top: 46px;
   object-fit: cover;
   display: none;
@@ -470,7 +464,7 @@ input::placeholder {
   width: 20.99802017211914px;
   border-radius: 0px;
   position: absolute;
-  margin-left: 770px;
+  margin-left: 820px;
   margin-top: 44px;
   object-fit: cover;
   display: none;
@@ -543,12 +537,10 @@ input::placeholder {
 
 #resumePhoneLogo {
   margin-top: 3px;
-  display: none;
 }
 
 #resumeEmailLogo {
   margin-top: 4px;
-  display: none;
 }
 
 .resumeAboutMe {
