@@ -32,7 +32,7 @@
 
               <input
                 type="text"
-                id="pos"
+                class="pos"
                 name="pos"
                 placeholder="დეველოპერი, დიზაინერი, ა.შ."
                 required
@@ -56,7 +56,7 @@
               <label class="redEmployer" for="employer">დამსაქმებელი</label>
               <input
                 type="text"
-                id="employer"
+                class="employerInput"
                 name="employer"
                 placeholder="დამსაქმებელი"
                 required
@@ -80,23 +80,23 @@
                 <label class="startDateHeader" for="startDate"
                   >დაწყების რიცხვი</label
                 >
-                <input type="date" id="startDate" required />
+                <input type="date" class="startDate" required />
               </div>
 
               <div class="end">
                 <label class="endDateHeader" for="endDate"
                   >დამთავრების რიცხვი</label
                 >
-                <input type="date" id="endDate" required />
+                <input type="date" class="endDate" required />
               </div>
             </div>
 
             <!-- აღწერის ლეიბლი და ინფუთი -->
-            <div class="description">
+            <div class="descriptionAll">
               <h2 class="descriptionHeader">აღწერა</h2>
               <textarea
                 name="description"
-                id="description"
+                class="description"
                 placeholder="როლი თანამდებობაზე და ზოგადი აღწერა"
                 required
               ></textarea>
@@ -119,26 +119,26 @@
     <div class="right" id="displayContainer">
       <div class="userInfo">
         <div class="uploadedImage">
-          <img id="preview-image" />
+          <img class="preview-image" />
         </div>
         <div class="names">
-          <h1 id="rightName"></h1>
-          <h1 id="rightLastName"></h1>
+          <h1 class="rightName"></h1>
+          <h1 class="rightLastName"></h1>
         </div>
 
         <div class="mailNumber">
-          <div id="rightMail">
-            <img id="mailLogo" src="Images/emailSign.png" alt="emailLogo" />
-            <p id="mailP"></p>
+          <div class="rightMail">
+            <img class="mailLogo" src="Images/emailSign.png" alt="emailLogo" />
+            <p class="mailP"></p>
           </div>
-          <div id="rightNumber">
-            <img id="phoneLogo" src="Images/phoneSign.png" alt="phoneLogo" />
-            <p id="phoneP"></p>
+          <div class="rightNumber">
+            <img class="phoneLogo" src="Images/phoneSign.png" alt="phoneLogo" />
+            <p class="phoneP"></p>
           </div>
         </div>
         <div class="aboutMeRight">
           <h3 class="aboutHeader" id="aboutHeader">ჩემ შესახებ</h3>
-          <textarea name="aboutMe" id="aboutMe" readonly></textarea>
+          <textarea name="aboutMe" class="aboutMe" readonly></textarea>
           <div class="lineUnderTextarea"></div>
         </div>
         <div class="experience">
@@ -151,12 +151,7 @@
             <h5 class="startdateRight"></h5>
             <h5 class="endDateRight"></h5>
           </div>
-          <textarea
-            name="expDescription"
-            id="expDescription"
-            class="expDescription"
-          >
-          </textarea>
+          <textarea name="expDescription" class="expDescription"> </textarea>
         </div>
       </div>
     </div>

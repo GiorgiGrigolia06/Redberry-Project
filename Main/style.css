@@ -145,7 +145,7 @@ header {
 }
 
 .addResume {
-  background-color: rgba(26, 26, 26, 1);
+  background-color: #000;
   color: white;
   font-family: "Helvetica Neue";
   width: 464px;
@@ -154,7 +154,8 @@ header {
   padding: 18px 126px;
   margin: 424px 728px;
   font-family: "HNeue";
-  border-color: rgba(26, 26, 26, 1);
+  border: none;
+  cursor: pointer;
 }
 
 .mainLogo {
@@ -163,14 +164,4 @@ header {
   height: 299px;
   left: 1076px;
   top: 473px;
-}
-
-a,
-a:link,
-a:visited,
-a:hover,
-a:active a:focus {
-  list-style-type: none;
-  color: white;
-  text-decoration: none;
 }

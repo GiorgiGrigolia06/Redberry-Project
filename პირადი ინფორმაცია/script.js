@@ -1,8 +1,10 @@
 "use strict";
 
+//#region SHOWING SUCCESS/ERROR MESSAGES AS THE USER TYPES IN DATA
+
 // Checking user's input under the "სახელი" label //
 
-const firstNameInput = document.getElementById("first-name");
+const firstNameInput = document.getElementById("INF-firstName");
 const passName = document.querySelector(".passName");
 const errorName = document.querySelector(".errorName");
 
@@ -32,7 +34,7 @@ firstNameInput.addEventListener("input", () => {
 
 // Checking user's input under the "გვარი" label //
 
-const lastNameInput = document.getElementById("last-name");
+const lastNameInput = document.getElementById("INF-lastName");
 const passLastName = document.querySelector(".passLastName");
 const errorLastName = document.querySelector(".errorLastName");
 
@@ -62,7 +64,7 @@ lastNameInput.addEventListener("input", () => {
 
 // Changing the border color of the textarea when user types something in it //
 
-const aboutYouInput = document.getElementById("aboutYou");
+const aboutYouInput = document.getElementById("INF-aboutMe");
 
 aboutYouInput.addEventListener("input", () => {
   if (aboutYouInput.value !== "") {
@@ -76,7 +78,7 @@ aboutYouInput.addEventListener("input", () => {
 
 // Checking user's input under the "ელ.ფოსტა" label //
 
-const emailInput = document.getElementById("email");
+const emailInput = document.getElementById("INF-email");
 const passEMail = document.querySelector(".passE-Mail");
 const errorEMail = document.querySelector(".errorE-Mail");
 
@@ -103,7 +105,7 @@ emailInput.addEventListener("input", () => {
 
 // Checking user's input under the "მობილურის ნომერი" label //
 
-const inputPhoneNumber = document.querySelector("#phone-number");
+const inputPhoneNumber = document.querySelector("#INF-mobileNumber");
 const passPhoneNumber = document.querySelector(".passPhoneNumber");
 const errorPhoneNumber = document.querySelector(".errorPhoneNumber");
 
@@ -133,12 +135,16 @@ inputPhoneNumber.addEventListener("input", function () {
 
 // End of Checking user's input under the "მობილურის ნომერი" label //
 
+//#endregion
+
+//#region SAVING USER INPUT WHEN PAGE REFRESHES
+
 // Saving user input when page is refreshed //
 
-const saveUserInput = (id) => {
-  const userInput = document.getElementById(id).value;
-  sessionStorage.setItem(id, userInput);
-};
+// const saveUserInput = (id) => {
+//   const userInput = document.getElementById(id).value;
+//   sessionStorage.setItem(id, userInput);
+// };
 
 const retrieveUserInput = (id) => {
   const savedInput = sessionStorage.getItem(id);
@@ -148,17 +154,26 @@ const retrieveUserInput = (id) => {
 };
 
 const inputFields = [
-  "first-name",
-  "last-name",
-  "aboutYou",
-  "email",
-  "phone-number",
+  "INF-firstName",
+  "INF-lastName",
+  "INF-aboutMe",
+  "INF-email",
+  "INF-mobileNumber",
 ];
 
 inputFields.forEach((id) => {
   retrieveUserInput(id);
-  window.addEventListener("beforeunload", () => saveUserInput(id));
+  //window.addEventListener("beforeunload", () => saveUserInput(id));
 });
+window.addEventListener("beforeunload", function () {
+  inputFields.forEach((item) => {
+    sessionStorage.setItem(item, document.getElementById(item).value);
+  });
+});
+
+//#endregion
+
+//#region SAVING ERROR/SUCCESS SIGNS AND SHOWING THEM AFTER THE PAGE IS REFRESHED
 
 // Saving error/success signs and showing them after the page is refreshed.
 
@@ -255,15 +270,19 @@ window.addEventListener("load", function () {
 
 // End of Saving user input when page is refreshed //
 
+//#endregion
+
+//#region DELETING USER INPUT WHEN GOING BACK TO THE MAIN PAGE
+
 // Deleting user input when going back to main page //
 
 document.querySelector(".goBackArrow").addEventListener("click", function () {
   const inputFields = [
-    "first-name",
-    "last-name",
-    "aboutYou",
-    "email",
-    "phone-number",
+    "INF-firstName",
+    "INF-lastName",
+    "INF-aboutMe",
+    "INF-email",
+    "INF-mobileNumber",
     "rightName",
     "rightLastName",
     "mailP",
@@ -292,10 +311,14 @@ document.querySelector(".goBackArrow").addEventListener("click", function () {
 
   previewImage.src = "";
   previewImage.style.display = "none";
-  sessionStorage.removeItem("imageSrc");
+  sessionStorage.removeItem("INF-imageSrc");
 });
 
 // End of Deleting user input when going back to main page //
+
+//#endregion
+
+//#region DISPLAYING AND SAVING DATA ON THE RIGHT SIDE OF THE PAGE
 
 // Displaying and saving data on the right side of the page //
 
@@ -368,18 +391,18 @@ function syncInputWithDisplay(inputElement, displayElement, imageId) {
   });
 }
 
-const inputFirstName = document.querySelector("#first-name");
+const inputFirstName = document.querySelector("#INF-firstName");
 const displayRightName = document.querySelector("#rightName");
 
-const inputLastName = document.querySelector("#last-name");
+const inputLastName = document.querySelector("#INF-lastName");
 const displayRightLastName = document.querySelector("#rightLastName");
 
-const inputMail = document.querySelector("#email");
+const inputMail = document.querySelector("#INF-email");
 const displayRightEmail = document.querySelector("#rightMail p");
 
 const displayRightNumber = document.querySelector("#rightNumber p");
 
-const inputAbout = document.querySelector("#aboutYou");
+const inputAbout = document.querySelector("#INF-aboutMe");
 const displayRightAbout = document.querySelector("#aboutMe");
 
 syncInputWithDisplay(inputFirstName, displayRightName);
@@ -392,6 +415,9 @@ syncInputWithDisplay(inputAbout, displayRightAbout);
 
 // End of Creating the right side of the page //
 
+//#endregion
+
+//#region SHOWING UPLOADED IMAGE ON THE RIGHT SIDE OF THE PAGE
 // Showing uploaded image on the right side of the page //
 
 const uploadedImage = document.querySelector("#file-input");
@@ -413,8 +439,8 @@ uploadedImage.addEventListener("change", function () {
 });
 
 window.addEventListener("load", function () {
-  if (this.sessionStorage.getItem("imageSrc")) {
-    previewImage.src = this.sessionStorage.getItem("imageSrc");
+  if (this.sessionStorage.getItem("INF-imageSrc")) {
+    previewImage.src = this.sessionStorage.getItem("INF-imageSrc");
     previewImage.style.display = "block";
   }
 
@@ -427,7 +453,7 @@ window.addEventListener("load", function () {
       reader.addEventListener("load", function () {
         previewImage.src = reader.result;
         previewImage.style.display = "block";
-        sessionStorage.setItem("imageSrc", reader.result);
+        sessionStorage.setItem("INF-imageSrc", reader.result);
       });
 
       reader.readAsDataURL(file);
@@ -435,6 +461,10 @@ window.addEventListener("load", function () {
 });
 
 // End of Showing uploaded image on the right side of the page //
+
+//#endregion
+
+//#region SHOWING ERROR SIGNS IF THE "შემდეგი" BUTTON IS PRESSED BUT THE INPUTS ARE INVALIND
 
 // Showing error signs if the "შემდეგი" button is pressed but input fields are empty or not valid //
 const nextButton = document.querySelector(".next");
@@ -479,19 +509,19 @@ nextButton.addEventListener("click", function () {
     uploadedImage.value
   ) {
     ///////////////////////////////////////////////////////////////
-    const firstName = document.querySelector("#first-name").value;
-    const lastName = document.querySelector("#last-name").value;
-    const email = document.querySelector("#email").value;
-    const phoneNumber = document.querySelector("#phone-number").value;
-    const about = aboutYouInput.value;
+    // const firstName = document.querySelector("#first-name").value;
+    // const lastName = document.querySelector("#last-name").value;
+    // const email = document.querySelector("#email").value;
+    // const phoneNumber = document.querySelector("#phone-number").value;
+    // const about = aboutYouInput.value;
     const aboutH3 = document.querySelector(".aboutHeader");
 
-    sessionStorage.setItem("firstName", firstName);
-    sessionStorage.setItem("lastName", lastName);
-    sessionStorage.setItem("email", email);
-    sessionStorage.setItem("phoneNumber", phoneNumber);
-    sessionStorage.setItem("about", about);
-    sessionStorage.setItem("aboutHeader", aboutH3.style.display);
+    // sessionStorage.setItem("INF-firstName", firstName);
+    // sessionStorage.setItem("INF-lastName", lastName);
+    // sessionStorage.setItem("INF-email", email);
+    // sessionStorage.setItem("INF-mobileNumber", phoneNumber);
+    // sessionStorage.setItem("INF-aboutMe", about);
+    sessionStorage.setItem("INF-aboutHeader", aboutH3.style.display);
 
     ////////////////////////////////////////////////////////
     window.location.href = "../გამოცდილება/index.html";
@@ -500,3 +530,5 @@ nextButton.addEventListener("click", function () {
 });
 
 // End of Showing error signs if the "შემდეგი" button is pressed but input fields are empty or not valid //
+
+//#endregion

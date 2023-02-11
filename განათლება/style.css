@@ -180,7 +180,7 @@ header {
   font-weight: 400;
   line-height: 24px;
   color: rgba(26, 26, 26, 1);
-  margin-left: 616px;
+  margin-left: 648px;
 }
 
 .goBackArrow {
@@ -197,14 +197,14 @@ input::placeholder {
   line-height: 21px;
 }
 
-.position {
+.education {
   display: flex;
   flex-direction: column;
   margin-top: 77px;
   margin-left: 139.9px;
 }
 
-.position label {
+.education label {
   font-style: normal;
   font-weight: bold;
   font-size: 16px;
@@ -213,14 +213,14 @@ input::placeholder {
   margin-bottom: 8px;
 }
 
-.position input {
+.education input {
   width: 810px;
   background: #ffffff;
   border: 1px solid #bcbcbc;
   border-radius: 4px;
 }
 
-.position small {
+.education small {
   margin-top: 8px;
   font-style: normal;
   font-weight: 300;
@@ -229,7 +229,7 @@ input::placeholder {
   color: #2e2e2e;
 }
 
-.passPos {
+.passEducation {
   height: 18.752519607543945px;
   width: 20.99802017211914px;
   border-radius: 0px;
@@ -240,7 +240,7 @@ input::placeholder {
   display: none;
 }
 
-.errorPos {
+.errorEducation {
   height: 18.752519607543945px;
   width: 20.99802017211914px;
   border-radius: 0px;
@@ -251,76 +251,21 @@ input::placeholder {
   display: none;
 }
 
-.employer {
-  display: flex;
-  flex-direction: column;
-  margin-top: 29px;
-  margin-left: 139.9px;
-  width: 810px;
-}
-
-.employer label {
-  font-style: normal;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 21px;
-  color: black;
-  margin-bottom: 8px;
-}
-
-.employer input {
-  height: 48px;
-  background: #ffffff;
-  border: 1px solid #bcbcbc;
-  border-radius: 4px;
-}
-
-.employer small {
-  margin-top: 8px;
-  font-style: normal;
-  font-weight: 300;
-  font-size: 14px;
-  line-height: 21px;
-  color: #2e2e2e;
-}
-
-.passEmployer {
-  height: 18.752519607543945px;
-  width: 20.99802017211914px;
-  border-radius: 0px;
-  position: absolute;
-  margin-left: 775px;
-  margin-top: 44px;
-  object-fit: cover;
-  display: none;
-}
-
-.errorEmployer {
-  height: 18.752519607543945px;
-  width: 20.99802017211914px;
-  border-radius: 0px;
-  position: absolute;
-  margin-left: 775px;
-  margin-top: 44px;
-  object-fit: cover;
-  display: none;
-}
-
-.dates {
+.degree {
   display: flex;
   gap: 56px;
   margin-top: 31px;
   margin-left: 139.9px;
 }
 
-.start,
-.end {
+.degreeInputAndLabel,
+.degreeDates {
   display: flex;
   flex-direction: column;
 }
 
-.start label,
-.end label {
+.degreeLabel,
+.degreeDatesLabel {
   font-style: normal;
   font-weight: bold;
   font-size: 16px;
@@ -329,8 +274,8 @@ input::placeholder {
   margin-bottom: 8px;
 }
 
-.start input,
-.end input {
+.degreeDatesInput,
+.degreeInput {
   margin-top: 8px;
   width: 377px;
   height: 48px;
@@ -342,17 +287,17 @@ input::placeholder {
   color: rgba(0, 0, 0, 0.6);
 }
 
-.descriptionAll {
+.educationDescription {
   display: flex;
   flex-direction: column;
   margin-left: 139.9px;
   width: 810px;
   margin-top: 49px;
-  padding-bottom: 58px;
+  padding-bottom: 53px;
   border-bottom: 1px solid rgba(193, 193, 193, 1);
 }
 
-.descriptionAll h2 {
+.educationDescription h2 {
   font-style: normal;
   font-weight: bold;
   font-size: 16px;
@@ -360,10 +305,10 @@ input::placeholder {
   color: #000000;
 }
 
-.descriptionAll textarea {
+.educationDescription textarea {
   margin-top: 8px;
   width: 810px;
-  height: 103px;
+  height: 179px;
   background: #ffffff;
   border: 1px solid #bcbcbc;
   border-radius: 4px;
@@ -373,12 +318,12 @@ input::placeholder {
   scrollbar-width: none;
 }
 
-.descriptionAll textarea::-webkit-scrollbar {
+.educationDescription textarea::-webkit-scrollbar {
   width: 0;
   background-color: transparent;
 }
 
-.descriptionAll textarea::placeholder {
+.educationDescription textarea::placeholder {
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -386,7 +331,7 @@ input::placeholder {
   color: rgba(0, 0, 0, 0.6);
 }
 
-.moreExperience {
+.moreEducation {
   background-color: rgba(98, 161, 235, 1);
   color: rgba(255, 255, 255, 1);
   padding: 14px 21px;
@@ -402,7 +347,7 @@ input::placeholder {
 
 .purpleButtons {
   display: flex;
-  margin-top: 115px;
+  margin-top: 150px;
   gap: 547px;
 }
 
@@ -421,7 +366,7 @@ input::placeholder {
   margin-bottom: 55px;
 }
 
-.next {
+.finish {
   width: 151px;
   height: 48px;
   color: #ffffff;
@@ -431,180 +376,4 @@ input::placeholder {
   background-color: #6b40e3;
   border-radius: 4px;
   border: none;
-}
-
-.right {
-  background-color: #ffffff;
-  width: 822px;
-  height: 1080px;
-}
-
-.userInfo {
-  margin-left: 80px;
-  margin-top: 68px;
-}
-
-.names {
-  display: flex;
-  gap: 20px;
-}
-
-.rightName,
-.rightLastName {
-  font-style: normal;
-  font-weight: 700;
-  font-size: 34px;
-  line-height: 42px;
-  color: #f93b1d;
-}
-
-.mailNumber {
-  margin-top: 17px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.rightMail,
-.rightNumber {
-  font-style: normal;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 21px;
-  color: #1a1a1a;
-  display: flex;
-  gap: 10px;
-}
-
-.phoneLogo {
-  margin-top: 3px;
-  /* display: none; */
-}
-
-.mailLogo {
-  margin-top: 4px;
-  /* display: none; */
-}
-
-.aboutMeRight {
-  margin-top: 34px;
-}
-
-.aboutHeader {
-  font-style: normal;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 22px;
-  color: #f93b1d;
-  display: none;
-}
-
-.aboutMeRight textarea {
-  margin-top: 15px;
-  width: 400px;
-  height: 100px;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 22px;
-  color: #000000;
-
-  border: none;
-  resize: none;
-  background-color: transparent;
-  padding: 0;
-  overflow: scroll;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-.aboutMeRight textarea::-webkit-scrollbar {
-  width: 0;
-  background-color: transparent;
-}
-
-.lineUnderTextarea {
-  border-top: 1px solid rgba(200, 200, 200, 1);
-  width: 400px;
-}
-
-.preview-image {
-  position: absolute;
-  width: 246px;
-  height: 246px;
-  border-radius: 133px;
-  margin-left: 400px;
-  object-fit: cover;
-}
-
-footer {
-  position: absolute;
-}
-
-.smallRedberryLogo {
-  position: relative;
-  left: 1178px;
-  top: 994px;
-}
-
-.new-form {
-  margin-top: -40px;
-}
-
-.experienceHeader {
-  font-style: normal;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 22px;
-  color: #f93b1d;
-  display: none;
-  margin-top: 24px;
-}
-
-.posAndCompany {
-  display: flex;
-  gap: 7px;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: #1a1a1a;
-  margin-top: 15px;
-}
-
-.datesRight {
-  font-style: italic;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 19px;
-  color: #919191;
-  display: flex;
-  gap: 5px;
-  margin-top: 7px;
-}
-
-.expDescription {
-  width: 662px;
-  height: 90px;
-  margin-top: 16px;
-  padding: 0;
-  font-style: normal;
-  font-family: "HNeue";
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 22px;
-  color: #000000;
-  overflow: scroll;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  border: none;
-}
-
-.expDescription::-webkit-scrollbar {
-  width: 0;
-  background-color: transparent;
-}
-
-.dash {
-  display: none;
 }

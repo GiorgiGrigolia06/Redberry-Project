@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ka">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>განათლება</title>
+    <link rel="stylesheet" href="style.css" type="text/css" />
+  </head>
+  <body>
+    <div class="left">
+      <header>
+        <a href="../Main/index.html"
+          ><img
+            src="Images/ArrowBack.png"
+            alt="goBackArrow"
+            class="goBackArrow"
+        /></a>
+
+        <h1 class="formHeader">განათლება<span class="pageNumber">3/3</span></h1>
+      </header>
+
+      <main>
+        <div class="forms">
+          <form>
+            <div class="education">
+              <label class="educationLabel" for="education">სასწავლებელი</label>
+              <input
+                type="text"
+                name="education"
+                class="educationInput"
+                required
+                id="education"
+                placeholder="სასწავლებელი"
+                minlength="2"
+              />
+              <img
+                class="passEducation"
+                src="Images/GreenCheckMark.png"
+                alt="GreenCheckMark"
+              />
+              <img
+                class="errorEducation"
+                src="Images/ErrorSign.png"
+                alt="errorSign"
+              />
+              <small>მინიმუმ 2 სიმბოლო</small>
+            </div>
+
+            <div class="degree">
+              <div class="degreeInputAndLabel">
+                <label class="degreeLabel" for="degree">ხარისხი</label>
+                <input
+                  type="text"
+                  name="degree"
+                  class="degreeInput"
+                  id="degree"
+                  required
+                  placeholder="აირჩიეთ ხარისხი"
+                />
+              </div>
+              <div class="degreeDates">
+                <label class="degreeDatesLabel" for="degreeDates"
+                  >დამთავრების რიცხვი</label
+                >
+                <input
+                  type="date"
+                  name="degreeDates"
+                  class="degreeDatesInput"
+                  id="degreeDates"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="educationDescription">
+              <h2 class="eduDescription">აღწერა</h2>
+              <textarea
+                name="eduDesctiption"
+                class="eduDescriptionTextarea"
+                placeholder="განათლების აღწერა"
+                required
+              ></textarea>
+            </div>
+          </form>
+        </div>
+
+        <div class="allButtons">
+          <button class="moreEducation" type="button">
+            მეტი სასწავლებლის დამატება
+          </button>
+
+          <div class="purpleButtons">
+            <button class="back" type="button">უკან</button>
+            <button type="button" class="finish">დასრულება</button>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

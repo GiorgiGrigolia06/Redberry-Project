@@ -1,8 +1,38 @@
 "use strict";
+//#region READING SESSION VALUES
+const firstName = sessionStorage.getItem("firstName");
+const lastName = sessionStorage.getItem("lastName");
+const email = sessionStorage.getItem("email");
+const phoneNumber = sessionStorage.getItem("phoneNumber");
+const about = sessionStorage.getItem("about");
+const image = sessionStorage.getItem("imageSrc");
+const aboutHeader = sessionStorage.getItem("aboutHeader");
+//#endregion
+//#region DISPLAY VALUES FROM SESSION
+document.querySelector(".preview-image").src = image;
+document.querySelector(".rightName").textContent = firstName;
+document.querySelector(".rightLastName").textContent = lastName;
+document.querySelector(".mailP").textContent = email;
+document.querySelector(".phoneP").textContent = phoneNumber;
+document.querySelector(".aboutMe").textContent = about;
+document.querySelector(".aboutHeader").style.display = aboutHeader;
 
-// Showing or hiding error/success messages as the user types in the position input //
-//#region error handling
-const posInput = document.querySelector(".pos");
+document.querySelector(".posRight");
+document.querySelector(".employerRight");
+document.querySelector(".startdateRight");
+document.querySelector(".endDateRight");
+document.querySelector(".expDescription");
+document.querySelector(".experienceHeader");
+//#endregion
+//#region READING INPUT VALUES
+const positionInput = document.querySelector(".pos");
+const employerInput = document.querySelector(".employerInput");
+const startDateInput = document.querySelector(".startDate");
+const endDateInput = document.querySelector(".endDate");
+const descriptionInput = document.querySelector(".description");
+const nextButton = document.querySelector(".next");
+//#endregion
+//#region READING ERROR HANDERS
 const posError = document.querySelector(".errorPos");
 const posPass = document.querySelector(".passPos");
 const posHeader = document.querySelector(".redPos");
@@ -10,38 +40,35 @@ const employerHeader = document.querySelector(".redEmployer");
 const startHeader = document.querySelector(".startDateHeader");
 const endHeader = document.querySelector(".endDateHeader");
 const descriptionHeader = document.querySelector(".descriptionHeader");
-
-posInput.addEventListener("input", function () {
-  if (posInput.value.length < 2) {
+const employerError = document.querySelector(".errorEmployer");
+const employerPass = document.querySelector(".passEmployer");
+//#endregion
+//#region ERROR HANDLING
+// Position //
+positionInput.addEventListener("input", function () {
+  if (positionInput.value.length < 2) {
     posError.style.display = "block";
     posPass.style.display = "none";
-    posInput.style.border = "1px solid rgba(239, 80, 80, 1)";
+    positionInput.style.border = "1px solid rgba(239, 80, 80, 1)";
     posHeader.style.color = "#E52F2F";
   }
 
-  if (posInput.value === "") {
+  if (positionInput.value === "") {
     posError.style.display = "none";
     posPass.style.display = "none";
-    posInput.style.border = "1px solid rgba(188, 188, 188, 1)";
+    positionInput.style.border = "1px solid rgba(188, 188, 188, 1)";
     posHeader.style.color = "";
   }
 
-  if (posInput.value.length >= 2) {
+  if (positionInput.value.length >= 2) {
     posError.style.display = "none";
     posPass.style.display = "block";
-    posInput.style.border = "1px solid rgba(152, 227, 126, 1)";
+    positionInput.style.border = "1px solid rgba(152, 227, 126, 1)";
     posHeader.style.color = "";
   }
 });
-//#endregion
-// End of Showing or hiding error/success messages as the user types in the position input//
 
-// Showing or hiding error/success messages as the user types in the employer input //
-//#region error handling for emploer input
-const employerInput = document.querySelector(".employerInput");
-const employerError = document.querySelector(".errorEmployer");
-const employerPass = document.querySelector(".passEmployer");
-
+// Employer//
 employerInput.addEventListener("input", function () {
   if (employerInput.value.length < 2) {
     employerError.style.display = "block";
@@ -64,10 +91,6 @@ employerInput.addEventListener("input", function () {
     employerHeader.style.color = "";
   }
 });
-//#endregion
-// End of Showing or hiding error/success messages as the user types in the employer input //
-//#region error handling for
-// Showing or hiding error/success messages as the user types in the dates input //
 
 // Start date //
 const startDatesInput = document.querySelector(".startDate");
@@ -75,7 +98,6 @@ const startDatesInput = document.querySelector(".startDate");
 startDatesInput.addEventListener("change", function () {
   if (startDatesInput.value) {
     startDatesInput.style.border = "1px solid rgba(152, 227, 126, 1)";
-    startHeader.style.color = "rgba(0, 0, 0, 1)";
   } else {
     startDatesInput.style.border = "";
   }
@@ -87,18 +109,12 @@ const endDatesInput = document.querySelector(".endDate");
 endDatesInput.addEventListener("change", function () {
   if (endDatesInput.value) {
     endDatesInput.style.border = "1px solid rgba(152, 227, 126, 1)";
-    endHeader.style.color = "rgba(0, 0, 0, 1)";
   } else {
     endDatesInput.style.border = "";
   }
 });
 
-// End of Showing or hiding error/success messages as the user types in the dates input //
-
-// Showing or hiding error/success messages as the user types in the description input //
-
-const descriptionInput = document.querySelector(".description");
-
+// Description //
 descriptionInput.addEventListener("input", function () {
   if (descriptionInput.value !== "") {
     descriptionInput.style.border = "1px solid rgba(152, 227, 126, 1)";
@@ -110,12 +126,7 @@ descriptionInput.addEventListener("input", function () {
   }
 });
 
-// End of Showing or hiding error/success messages as the user types in the description input //
-
-// Showing error signs if the user presses "შემდეგი" button but the inputs are empty or filled incorrectly //
-
-const nextButton = document.querySelector(".next");
-
+// Next Button //
 nextButton.addEventListener("click", function () {
   if (posInput.value === "" || posInput.value.length < 2) {
     posError.style.display = "block";
@@ -142,40 +153,34 @@ nextButton.addEventListener("click", function () {
     descriptionHeader.style.color = "#E52F2F";
   }
 });
+//#endregion
+//#region STORING DATA TO SESSION
+const saveUserInput = (id) => {
+  const userInput = document.getElementsByClassName(id).value;
+  sessionStorage.setItem(id, userInput);
+};
 
-// End of Showing error signs if the user presses "შემდეგი" button but the inputs are empty or filled incorrectly //
+const retrieveUserInput = (id) => {
+  const savedInput = sessionStorage.getItem(id);
+  if (savedInput) {
+    document.getElementsByClassName(id).value = savedInput;
+  }
+};
 
-// Saving user input if the page refreshes //
+const inputFields = [
+  "pos",
+  "employerRight",
+  "startDate",
+  "endDate",
+  "description",
+];
 
-// const saveUserInput = (id) => {
-//   const userInput = document.getElementsByClassName(id).value;
-//   sessionStorage.setItem(id, userInput);
-// };
-
-// const retrieveUserInput = (id) => {
-//   const savedInput = sessionStorage.getItem(id);
-//   if (savedInput) {
-//     document.getElementsByClassName(id).value = savedInput;
-//   }
-// };
-
-// const inputFields = [
-//   "pos",
-//   "employerRight",
-//   "startDate",
-//   "endDate",
-//   "description",
-// ];
-
-// inputFields.forEach((id) => {
-//   retrieveUserInput(id);
-//   window.addEventListener("beforeunload", () => saveUserInput(id));
-// });
-
-// End of Saving user input if the page refreshes //
-
-// Saving error/success signs and showing them after the page is refreshed //
-
+inputFields.forEach((id) => {
+  retrieveUserInput(id);
+  window.addEventListener("beforeunload", () => saveUserInput(id));
+});
+//#endregion
+//#region ERROR HANDLING V2
 // For position //
 window.addEventListener("load", function () {
   if (posInput.value.length >= 2) {
@@ -235,11 +240,8 @@ window.addEventListener("load", function () {
     descriptionInput.style.border = "";
   }
 });
-
-// End of Saving error/success signs and showing them after the page is refreshed //
-
-// Adding a new form when pressing a button //
-
+//#endregion
+//#region ADD NEW FORM
 document
   .querySelector(".moreExperience")
   .addEventListener("click", function () {
@@ -272,7 +274,7 @@ document
       <label class="redEmployer" for="employer">დამსაქმებელი</label>
       <input
         type="text"
-        class="employerInput"
+        class="employer"
         name="employer"
         placeholder="დამსაქმებელი"
         required
@@ -296,14 +298,14 @@ document
         <label class="startDateHeader" for="startDate"
           >დაწყების რიცხვი</label
         >
-        <input type="date" id="startDate" required />
+        <input type="date" class="startDate" required />
       </div>
 
       <div class="end">
         <label class="endDateHeader" for="endDate"
           >დამთავრების რიცხვი</label
         >
-        <input type="date" id="endDate" required />
+        <input type="date" class="endDate" required />
       </div>
     </div>
 
@@ -320,90 +322,33 @@ document
 
     document.querySelector(".forms").appendChild(newForm);
   });
-// End of Adding a new form when pressing a button //
+//#endregion
+//#region IMAGE UPLOAD HANDLER
+// Check if localStorage is supported in the browser
+// Get the file input element
+const fileInput = document.querySelector("#file-input");
 
-// Showing saved data from previous page //
+// Listen for changes in the file input element
+fileInput.addEventListener("change", function () {
+  // Get the first file in the list of selected files
+  const file = this.files[0];
 
-window.addEventListener("load", function () {
-  const firstName = sessionStorage.getItem("INF-firstName");
-  const lastName = sessionStorage.getItem("INF-lastName");
-  const email = sessionStorage.getItem("INF-email");
-  const phoneNumber = sessionStorage.getItem("INF-mobileNumber");
-  const about = sessionStorage.getItem("INF-aboutMe");
-  const image = sessionStorage.getItem("INF-imageSrc");
-  const aboutHeader = sessionStorage.getItem("INF-aboutHeader");
+  // Create a FileReader object to read the file
+  const reader = new FileReader();
 
-  document.querySelector(".preview-image").src = image;
-  document.querySelector(".rightName").textContent = firstName;
-  document.querySelector(".rightLastName").textContent = lastName;
-  document.querySelector(".mailP").textContent = email;
-  document.querySelector(".phoneP").textContent = phoneNumber;
-  document.querySelector(".aboutMe").textContent = about;
-  document.querySelector(".aboutHeader").style.display = aboutHeader;
-});
+  // Listen for the `load` event, which is triggered when the file is finished reading
+  reader.addEventListener("load", function () {
+    // Get the data URL of the file
+    const dataURL = reader.result;
+    console.log("hereeeeeeeeeamndsasbkdabdsa");
+    console.log(dataURL);
 
-// End of Showing saved data from previous page //
-
-// From left to right //
-
-const posInputLeft = document.querySelector(".pos");
-const employerInputLeft = document.querySelector(".employerInput");
-const startDateInputLeft = document.querySelector(".startDate");
-const endDateInputLeft = document.querySelector(".endDate");
-const descriptionInpuLeft = document.querySelector(".description");
-
-const posInputRight = document.querySelector(".posRight");
-const employerInputRight = document.querySelector(".employerRight");
-const startDateInputRight = document.querySelector(".startdateRight");
-const endDateInputRight = document.querySelector(".endDateRight");
-const descriptionInputRight = document.querySelector(".expDescription");
-const experienceHeaderRight = document.querySelector(".experienceHeader");
-
-const elements = [
-  posInputLeft,
-  employerInputLeft,
-  startDateInputLeft,
-  endDateInputLeft,
-  descriptionInpuLeft,
-];
-
-const keys = [
-  "EXP-position",
-  "EXP-employer",
-  "EXP-startingDate",
-  "EXP-endingDate",
-  "EXP-description",
-];
-
-const displayElements = [
-  posInputRight,
-  employerInputRight,
-  startDateInputRight,
-  endDateInputRight,
-  descriptionInputRight,
-];
-
-for (let i = 0; i < elements.length; i++) {
-  elements[i].addEventListener("input", function () {
-    displayElements[i].innerHTML = elements[i].value;
-    sessionStorage.setItem(keys[i], elements[i].value);
+    // Save the data URL to localStorage
+    localStorage.setItem("image", dataURL);
   });
 
-  elements[i].value = sessionStorage.getItem(keys[i]) || "";
-  displayElements[i].innerHTML = elements[i].value;
-}
-
-document.addEventListener("DOMContentLoaded", function () {
-  experienceHeaderRight.style.display =
-    posInputLeft.value !== "" ? "block" : "none";
+  // Start reading the file
+  reader.readAsDataURL(file);
 });
 
-// End of From left to right //
-
-// Adding Comma next to the posInputLeft field if it's not an empty string //
-posInputLeft.addEventListener("input", function () {
-  posInputRight.textContent = posInputLeft.value;
-  if (posInputLeft.value !== "") {
-    posInputRight.textContent = `${posInputRight.textContent},`;
-  }
-});
+//#endregion

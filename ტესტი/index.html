@@ -29,6 +29,7 @@
             <div class="form-field">
               <label class="redFName" for="first-name">სახელი</label>
               <input
+                oninput="firstNameOnInput()"
                 type="text"
                 id="INF-firstName"
                 name="first-name"
@@ -38,12 +39,12 @@
                 minlength="2"
               />
               <img
-                class="passName"
+                class="passFirstName"
                 src="Images/GreenCheckMark.png"
                 alt="GreenCheckMark"
               />
               <img
-                class="errorName"
+                class="errorFirstName"
                 src="Images/ErrorSign.png"
                 alt="errorSign"
               />
@@ -53,6 +54,7 @@
             <div class="form-field">
               <label class="redLName" for="last-name">გვარი</label>
               <input
+                oninput="lastNameOnInput()"
                 type="text"
                 id="INF-lastName"
                 name="last-name"
@@ -89,13 +91,14 @@
               src="Images/ErrorSign.png"
               alt="errorSign"
             />
-            <input type="file" name="file-input" id="file-input" required />
+            <input type="file" name="file-input" id="INF-image" required />
           </div>
 
           <!-- about me ინფორმაციის ლეიბლი და ინფუთი -->
           <div class="about">
             <h2>ჩემ შესახებ (არასავალდებულო)</h2>
             <textarea
+              oninput="aboutMeOnInput()"
               name="aboutYou"
               id="INF-aboutMe"
               placeholder="ზოგადი ინფო შენ შესახებ"
@@ -161,29 +164,39 @@
       </main>
     </div>
 
-    <div class="right" id="displayContainer">
+    <div class="resume" id="displayContainer">
       <div class="userInfo">
         <div class="uploadedImage">
-          <img id="preview-image" />
+          <img id="previewImage" />
         </div>
         <div class="names">
-          <h1 id="rightName"></h1>
-          <h1 id="rightLastName"></h1>
+          <h1 id="resumeFirstName"></h1>
+          <h1 id="resumeLastName"></h1>
         </div>
 
         <div class="mailNumber">
-          <div id="rightMail">
-            <img id="mailLogo" src="Images/emailSign.png" alt="emailLogo" />
-            <p id="mailP"></p>
+          <div id="resumeMailContainer">
+            <img
+              id="resumeEmailLogo"
+              src="Images/emailSign.png"
+              alt="emailLogo"
+            />
+            <p id="resumeMail"></p>
           </div>
-          <div id="rightNumber">
-            <img id="phoneLogo" src="Images/phoneSign.png" alt="phoneLogo" />
-            <p id="phoneP"></p>
+          <div id="resumeNumberContainer">
+            <img
+              id="resumePhoneLogo"
+              src="Images/phoneSign.png"
+              alt="phoneLogo"
+            />
+            <p id="resumeNumber"></p>
           </div>
         </div>
-        <div class="aboutMeRight">
-          <h3 class="aboutHeader" id="aboutHeader">ჩემ შესახებ</h3>
-          <textarea name="aboutMe" id="aboutMe" readonly></textarea>
+        <div class="resumeAboutMe">
+          <h3 class="resumeAboutMeHeader" id="resumeAboutMeHeader">
+            ჩემ შესახებ
+          </h3>
+          <textarea name="aboutMe" id="resumeAboutMe" readonly></textarea>
         </div>
       </div>
     </div>
