@@ -205,7 +205,6 @@ function errorSuccessHandlingForLastName() {
     document.querySelector(".redLName").style.color = "#E52F2F";
   }
 }
-
 function errorSuccessHandlingForAboutMe() {
   //reading the element
   let aboutMeElement = document.querySelector("#INF-aboutMe");
@@ -218,7 +217,6 @@ function errorSuccessHandlingForAboutMe() {
     document.querySelector(".resumeAboutMeHeader").style.display = "none";
   }
 }
-
 function errorSuccessHandlingForEmail() {
   //reading the element
   let emailElement = document.querySelector("#INF-email");
@@ -246,7 +244,6 @@ function errorSuccessHandlingForEmail() {
     document.querySelector(".redEmail").style.color = "#E52F2F";
   }
 }
-
 function errorSuccessHandlingForNumber() {
   //reading the element
   let numberElement = document.querySelector("#INF-mobileNumber");
@@ -289,6 +286,53 @@ function goNext() {
     imagePass.style.display === "block"
   ) {
     window.location.href = "../გამოცდილება/index.html";
+  } else {
+    if (!this.sessionStorage.getItem("INF-image")) {
+      imagePass.style.display = "none";
+      imageError.style.display = "block";
+    }
+    if (firstName.length === 0) {
+      let firstNameElement = document.querySelector("#INF-firstName");
+      firstNameElement.style.border = "1px solid #EF5050";
+      firstNamePass.style.display = "none";
+      firstNameError.style.display = "block";
+      document.querySelector(".redFName").style.color = "#E52F2F";
+    } else {
+      errorSuccessHandlingForFirstName();
+    }
+    if (lastName.length === 0) {
+      let lastNameElement = document.querySelector("#INF-lastName");
+      lastNameElement.style.border = "1px solid #EF5050";
+      lastNamePass.style.display = "none";
+      lastNameError.style.display = "block";
+      document.querySelector(".redLName").style.color = "#E52F2F";
+    } else {
+      errorSuccessHandlingForLastName();
+    }
+    if (email.length === 0) {
+      let emailElement = document.querySelector("#INF-email");
+      emailPass.style.display = "none";
+      emailError.style.display = "block";
+      emailElement.style.border = "1px solid #EF5050";
+      document.querySelector(".redEmail").style.color = "#E52F2F";
+    } else {
+      errorSuccessHandlingForEmail();
+    }
+    if (mobileNumber.length === 0) {
+      let numberElement = document.querySelector("#INF-mobileNumber");
+      mobileNumberPass.style.display = "none";
+      mobileNumberError.style.display = "block";
+      numberElement.style.border = "1px solid #EF5050";
+      document.querySelector(".redPhoneNumber").style.color = "#E52F2F";
+    } else {
+      errorSuccessHandlingForNumber();
+    }
   }
+}
+//#endregion
+//#region GO BACK BUTTON
+function goBack() {
+  sessionStorage.clear();
+  window.location.href = "../Main/index.html";
 }
 //#endregion

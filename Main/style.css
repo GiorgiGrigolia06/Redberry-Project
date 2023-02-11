@@ -165,3 +165,7 @@ header {
   left: 1076px;
   top: 473px;
 }
+
+button:hover {
+  cursor: pointer;
+}
