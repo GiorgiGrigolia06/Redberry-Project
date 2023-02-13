@@ -377,3 +377,227 @@ input::placeholder {
   border-radius: 4px;
   border: none;
 }
+
+.resume {
+  background-color: #ffffff;
+  width: 822px;
+  height: 1080px;
+  padding-left: 80px;
+  padding-top: 68px;
+}
+
+.names {
+  display: flex;
+  gap: 20px;
+}
+
+#resumeFirstName,
+#resumeLastName {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 34px;
+  line-height: 42px;
+  color: #f93b1d;
+}
+
+.mailNumber {
+  margin-top: 17px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.emailLogo,
+.phoneLogo {
+  height: 16.666664123535156px;
+  width: 16.666664123535156px;
+}
+
+#resumeMailContainer,
+#resumeNumberContainer {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  color: #1a1a1a;
+  display: flex;
+  gap: 10px;
+}
+
+#resumePhoneLogo {
+  margin-top: 3px;
+}
+
+#resumeEmailLogo {
+  margin-top: 4px;
+}
+
+.resumeAboutMe {
+  margin-top: 34px;
+  border-bottom: 1px solid rgba(200, 200, 200, 1);
+  width: 660px;
+}
+
+.resumeAboutMeHeader {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+  color: #f93b1d;
+}
+
+.resumeAboutMe textarea {
+  margin-top: 15px;
+  width: 400px;
+  height: 100px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  color: #000000;
+  border: none;
+  outline: none;
+  resize: none;
+  background-color: transparent;
+  padding: 0;
+  overflow: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.resumeAboutMe textarea::-webkit-scrollbar {
+  width: 0;
+  background-color: transparent;
+}
+
+#previewImage {
+  position: absolute;
+  width: 246px;
+  height: 246px;
+  border-radius: 133px;
+  margin-left: 400px;
+  object-fit: cover;
+}
+
+footer {
+  position: absolute;
+}
+
+.smallRedberryLogo {
+  position: relative;
+  left: 1178px;
+  top: 994px;
+}
+
+.resumeExperienceHeader {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+  color: #f93b1d;
+  margin-top: 24px;
+}
+
+.posAndCompany {
+  display: flex;
+  gap: 7px;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #1a1a1a;
+  margin-top: 15px;
+}
+
+.resumeDates {
+  font-style: italic;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: #919191;
+  display: flex;
+  gap: 5px;
+  margin-top: 7px;
+}
+
+.resumeDescription {
+  width: 662px;
+  max-height: 90px;
+  margin-top: 16px;
+  padding: 0;
+  font-style: normal;
+  font-family: "HNeue";
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  color: #000000;
+  overflow: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  border: none;
+}
+
+.expDescription::-webkit-scrollbar {
+  width: 0;
+  background-color: transparent;
+}
+
+.resumeEducationHeader {
+  margin-top: 26px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+  color: #f93b1d;
+  margin-bottom: 15px;
+}
+
+.educationPlaceAndDegree {
+  display: flex;
+  gap: 15px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  color: #1a1a1a;
+  margin-bottom: 7px;
+}
+
+.resumeEducationEndDate {
+  font-style: italic;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: #919191;
+  margin-bottom: 16px;
+}
+
+.resumeEducationDescription {
+  position: absolute;
+  width: 662px;
+  /* height: 88px; */
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  color: #000000;
+
+  border: none;
+  outline: none;
+  resize: none;
+  background-color: transparent;
+  padding: 0;
+  overflow: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.resumeEducationDescription::-webkit-scrollbar {
+  width: 0;
+  background-color: transparent;
+}
+
+.experience {
+  /* padding-bottom: 32px; */
+  border-bottom: 1px solid rgba(200, 200, 200, 1);
+}

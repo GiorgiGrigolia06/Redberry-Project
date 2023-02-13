@@ -1,168 +1,599 @@
-"use strict";
+//#region API FOR FETCHING THE DEGREES
+const select = document.getElementById("degree");
 
-//#region STORING ELEMENTS IN VARIABLES
-
+fetch("https://resume.redberryinternship.ge/api/degrees")
+  .then((response) => response.json())
+  .then((data) => {
+    data.forEach((item) => {
+      const option = document.createElement("option");
+      option.value = item.id;
+      option.text = item.title;
+      select.add(option);
+    });
+  });
+select.addEventListener("change", (event) => {
+  const selectedOption = event.target.selectedOptions[0];
+  sessionStorage.setItem("EDU-degree", selectedOption.text);
+});
+//#endregion
+//#region CREATING RELEVANT NUMBER OF FORMS
+const numberOfEducations = sessionStorage.getItem("EDU-education");
+if (numberOfEducations) {
+  const len = numberOfEducations.split(",").length;
+  for (i = 1; i < len; i++) {
+    moreEducations();
+  }
+}
+const positionsInSession = sessionStorage.getItem("EXP-position");
+if (positionsInSession) {
+  const len = positionsInSession.split(",").length;
+  for (i = 1; i < len; i++) {
+    newResumeExperienceInstance();
+  }
+}
+//#endregion
+//#region READING INPUT VALUES
 // Education
 const educationLabel = document.querySelector(".educationLabel");
 const educationInput = document.querySelector(".educationInput");
 const passEducation = document.querySelector(".passEducation");
 const errorEducation = document.querySelector(".errorEducation");
-
 // Degree
-const degreeLabel = document.querySelector(".degreeLabel");
-const degreeInput = document.querySelector(".degreeInput");
 const degreeDatesLabel = document.querySelector(".degreeDatesLabel");
 const degreeDatesInput = document.querySelector(".degreeDatesInput");
-
 // Description
 const eduDescriptionH2 = document.querySelector(".eduDescription");
 const eduDescriptionTextarea = document.querySelector(
   ".eduDescriptionTextarea"
 );
-
 // Finish
 const finishButton = document.querySelector(".finish");
+//#endregion
+//#region DISPLAYING SESSION VALUES
+// INF
+document.querySelector("#resumeFirstName").innerHTML =
+  sessionStorage.getItem("INF-firstName");
+
+document.querySelector("#resumeLastName").innerHTML =
+  sessionStorage.getItem("INF-lastName");
+
+document.querySelector("#resumeAboutMe").innerHTML =
+  sessionStorage.getItem("INF-aboutMe");
+
+document.querySelector("#resumeMail").innerHTML =
+  sessionStorage.getItem("INF-email");
+
+document.querySelector("#resumeNumber").innerHTML =
+  sessionStorage.getItem("INF-mobileNumber");
+// EXP
+if (positionsInSession) {
+  const splittedPositionsInSession = positionsInSession.split(",");
+  displayResumePosition(splittedPositionsInSession);
+}
+
+const employersInSession = sessionStorage.getItem("EXP-employer");
+if (employersInSession) {
+  const splittedEmployersInSession = employersInSession.split(",");
+  displayResumeEmployer(splittedEmployersInSession);
+}
+
+const startingDatesInSession = sessionStorage.getItem("EXP-startingDate");
+if (startingDatesInSession) {
+  const splittedStartingDatesInSession = startingDatesInSession.split(",");
+  displayResumeStartingDate(splittedStartingDatesInSession);
+}
+
+const endingDatesInSession = sessionStorage.getItem("EXP-endingDate");
+if (endingDatesInSession) {
+  const splittedEndingDatesInSession = endingDatesInSession.split(",");
+  displayResumeEndingDate(splittedEndingDatesInSession);
+}
+
+const experienceInSession = sessionStorage.getItem("EXP-description");
+if (experienceInSession) {
+  const splittedexperienceInSession = experienceInSession.split(",");
+  displayResumeExperience(splittedexperienceInSession);
+}
+
+// EDU
+const educationInSession = sessionStorage.getItem("EDU-education");
+if (educationInSession) {
+  const splittedEducationInSession = educationInSession.split(",");
+  displayEducation(splittedEducationInSession);
+  displayResumePosition(splittedEducationInSession);
+}
+
+const degreeDateInSession = sessionStorage.getItem("EDU-degreeDate");
+if (degreeDateInSession) {
+  const splittedDegreeDateInSession = educationInSession.split(",");
+  displayDegreeDate(splittedDegreeDateInSession);
+  displayResumeDegreeDate(splittedDegreeDateInSession);
+}
+
+const eduDescriptionInSession = sessionStorage.getItem("EDU-description");
+if (eduDescriptionInSession) {
+  const splittedEduDescriptionInSession = educationInSession.split(",");
+  displayEduDescription(splittedEduDescriptionInSession);
+  displayResumeEduDescription(splittedEduDescriptionInSession);
+}
+
+//
+function displayDegreeDate(degreeDate) {
+  const resumeDegreeData = document.querySelectorAll(
+    'h5[class="resumeEducationEndDate"]'
+  );
+  degreeDate.forEach((degreeDate, index) => {
+    resumeDegreeData[index].innerHTML = degreeDate;
+  });
+}
+//
 
 //#endregion
+//#region SYNCING SESSION VALUES
+function displayResumeExperience(experiences) {
+  const resumeExperiences = document.querySelectorAll(
+    'textarea[name="resumeDescription"]'
+  );
+  experiences.forEach((experience, index) => {
+    resumeExperiences[index].innerHTML = experience;
+  });
+}
 
-//#region SHOWING SUCCESS/ERROR MESSAGES WHEN USER TYPES IN DATA
+function displayResumeEndingDate(endingDates) {
+  const resumeEndingDates = document.querySelectorAll(
+    'h5[class="resumeEndDate"]'
+  );
+  endingDates.forEach((endingDate, index) => {
+    resumeEndingDates[index].innerHTML = endingDate;
+  });
+}
 
-// Education - showing success/error messages when user types in data //
-educationInput.addEventListener("input", function () {
-  if (educationInput.value.length < 2) {
-    passEducation.style.display = "none";
-    errorEducation.style.display = "block";
-    educationLabel.style.color = "rgba(229, 47, 47, 1)";
-    educationInput.style.border = "1px solid rgba(239, 80, 80, 1)";
+function displayResumeStartingDate(startingDates) {
+  const resumeStartingDates = document.querySelectorAll(
+    'h5[class="resumeStartDate"]'
+  );
+  startingDates.forEach((startingDate, index) => {
+    resumeStartingDates[index].innerHTML = startingDate;
+  });
+}
+
+function displayResumeEmployer(employers) {
+  const resumeEmployers = document.querySelectorAll(
+    'h4[class="resumeEmployer"]'
+  );
+  employers.forEach((employer, index) => {
+    resumeEmployers[index].innerHTML = employer;
+  });
+}
+
+function displayResumePosition(positions) {
+  const resumePositions = document.querySelectorAll(
+    'h4[class="resumePosition"]'
+  );
+  positions.forEach((position, index) => {
+    resumePositions[index].innerHTML = position;
+  });
+}
+//#endregion
+//#region CALL ERROR / SUCCESS FUNCTIONS
+// errorSuccessHandlingForPosition();
+// errorSuccessHandlingForEmployer();
+// errorSuccessHandlingForStartDate();
+// errorSuccessHandlingForEndDate();
+// errorSuccessHandlingForDescription();
+//#endregion
+//#region ONINPUT
+function positionOnInput() {
+  const positionsInputElements = document.querySelectorAll(
+    'input[name="EXP-position"]'
+  );
+  const positionsArray = Array.from(positionsInputElements).map(
+    (inputElement) => inputElement.value
+  );
+  console.log(positionsArray);
+  position = document.querySelector("#EXP-position").value;
+  displayPosition(positionsArray);
+  displayResumePosition(positionsArray);
+  sessionStorage.setItem("EXP-position", positionsArray);
+  //ERROR / SUCCESS HANDLING
+  errorSuccessHandlingForPosition();
+}
+
+function employerOnInput() {
+  const employersInputElements = document.querySelectorAll(
+    'input[name="EXP-employer"]'
+  );
+  const employersArray = Array.from(employersInputElements).map(
+    (inputElement) => inputElement.value
+  );
+  employer = document.querySelector("#EXP-employer").value;
+  displayEmployer(employersArray);
+  displayResumeEmployer(employersArray);
+  sessionStorage.setItem("EXP-employer", employersArray);
+  //ERROR / SUCCESS HANDLING
+  errorSuccessHandlingForEmployer();
+}
+
+function startDateOnInput() {
+  const startingDatesInputElements = document.querySelectorAll(
+    'input[name="EXP-startingDate"]'
+  );
+  const startingDatesArray = Array.from(startingDatesInputElements).map(
+    (inputElement) => inputElement.value
+  );
+  startingDate = document.querySelector("#EXP-startingDate").value;
+  displayStartingDate(startingDatesArray);
+  displayResumeStartingDate(startingDatesArray);
+  sessionStorage.setItem("EXP-startingDate", startingDatesArray);
+  //ERROR / SUCCESS HANDLING
+  errorSuccessHandlingForStartDate();
+}
+
+function endDateOnInput() {
+  const endingDatesInputElements = document.querySelectorAll(
+    'input[name="EXP-endingDate"]'
+  );
+  const endingDatesArray = Array.from(endingDatesInputElements).map(
+    (inputElement) => inputElement.value
+  );
+  endingDate = document.querySelector("#EXP-endingDate").value;
+  displayEndingDate(endingDatesArray);
+  displayResumeEndingDate(endingDatesArray);
+  sessionStorage.setItem("EXP-endingDate", endingDatesArray);
+  //ERROR / SUCCESS HANDLING
+  errorSuccessHandlingForEndDate();
+}
+
+function descriptionOnInput() {
+  const descriptionsInputElements = document.querySelectorAll(
+    'textarea[name="EXP-description"]'
+  );
+  const descriptionsArray = Array.from(descriptionsInputElements).map(
+    (inputElement) => inputElement.value
+  );
+  description = document.querySelector("#EXP-description").value;
+  displayExperience(descriptionsArray);
+  displayResumeExperience(descriptionsArray);
+  sessionStorage.setItem("EXP-description", descriptionsArray);
+  //ERROR / SUCCESS HANDLING
+  errorSuccessHandlingForDescription();
+}
+
+//#endregion
+//#region ERROR / SUCCESS HANDLING
+function errorSuccessHandlingForPosition() {
+  //reading the element
+  let positionElement = document.querySelector("#EXP-position");
+  if (positionElement.value.length < 2) {
+    positionError.style.display = "block";
+    positionPass.style.display = "none";
+    positionElement.style.border = "1px solid rgba(239, 80, 80, 1)";
+    document.querySelector(".redPos").style.color = "#E52F2F";
   }
 
-  if (educationInput.value.length >= 2) {
-    passEducation.style.display = "block";
-    errorEducation.style.display = "none";
-    educationLabel.style.color = "";
-    educationInput.style.border = "1px solid rgba(152, 227, 126, 1)";
+  if (positionElement.value === "") {
+    positionError.style.display = "none";
+    positionPass.style.display = "none";
+    positionElement.style.border = "1px solid rgba(188, 188, 188, 1)";
+    document.querySelector(".redPos").style.color = "";
+    document.querySelector(".resumeExperienceHeader").style.display = "none";
   }
 
-  if (educationInput.value === "") {
-    passEducation.style.display = "none";
-    errorEducation.style.display = "none";
-    educationLabel.style.color = "";
-    educationInput.style.border = "";
+  if (positionElement.value.length >= 2) {
+    positionError.style.display = "none";
+    positionPass.style.display = "block";
+    positionElement.style.border = "1px solid rgba(152, 227, 126, 1)";
+    document.querySelector(".redPos").style.color = "";
   }
-});
 
-// Degree - showing success/error messages when user types in data //
-degreeDatesInput.addEventListener("change", function () {
-  if (degreeDatesInput.value) {
-    degreeDatesInput.style.border = "1px solid rgba(152, 227, 126, 1)";
-    degreeDatesLabel.style.color = "";
+  if (positionElement.value.length > 0) {
+    document.querySelector(".resumeExperienceHeader").style.display = "block";
   } else {
-    degreeDatesInput.style.border = "";
+    document.querySelector(".resumeExperienceHeader").style.display = "none";
   }
-});
+}
+function errorSuccessHandlingForEmployer() {
+  //reading the element
+  let employerElement = document.querySelector("#EXP-employer");
+  if (employerElement.value.length < 2) {
+    employerError.style.display = "block";
+    employerPass.style.display = "none";
+    employerElement.style.border = "1px solid rgba(239, 80, 80, 1)";
+    document.querySelector(".redEmployer").style.color = "#E52F2F";
+  }
 
-// Description - showing success/error messages when user types in data //
-eduDescriptionTextarea.addEventListener("input", function () {
-  if (eduDescriptionTextarea.value === "") {
-    eduDescriptionTextarea.style.border = "";
+  if (employerElement.value === "") {
+    employerError.style.display = "none";
+    employerPass.style.display = "none";
+    employerElement.style.border = "1px solid rgba(188, 188, 188, 1)";
+    document.querySelector(".redEmployer").style.color = "";
   }
 
-  if (eduDescriptionTextarea.value !== "") {
-    eduDescriptionTextarea.style.border = "1px solid rgba(152, 227, 126, 1)";
-    eduDescriptionH2.style.color = "";
+  if (employerElement.value.length >= 2) {
+    employerError.style.display = "none";
+    employerPass.style.display = "block";
+    employerElement.style.border = "1px solid rgba(152, 227, 126, 1)";
+    document.querySelector(".redEmployer").style.color = "";
   }
-});
+}
+
+function errorSuccessHandlingForStartDate() {
+  //reading the element
+  let startingDateElement = document.querySelector("#EXP-startingDate");
+
+  if (startingDateElement.value !== "") {
+    startingDateElement.style.border = "1px solid #98E37E";
+    document.querySelector(".startDateHeader").style.color = "";
+  } else {
+    startingDateElement.style.border = "1px solid #BCBCBC";
+  }
+}
+
+function errorSuccessHandlingForEndDate() {
+  //reading the element
+  let endingDateElement = document.querySelector("#EXP-endingDate");
+
+  if (endingDateElement.value !== "") {
+    endingDateElement.style.border = "1px solid #98E37E";
+    document.querySelector(".endDateHeader").style.color = "";
+  } else {
+    endingDateElement.style.border = "1px solid #BCBCBC";
+  }
+}
+
+function errorSuccessHandlingForDescription() {
+  //reading the element
+  let descriptionElement = document.querySelector("#EXP-description");
+  if (descriptionElement.value !== "") {
+    descriptionElement.style.border = "1px solid rgba(152, 227, 126, 1)";
+    document.querySelector(".descriptionHeader").style = "";
+  }
+
+  if (descriptionElement.value === "") {
+    descriptionElement.style.border = "";
+  }
+}
 
 //#endregion
+//#region IMAGE HANDLING
+const previewImage = document.querySelector("#previewImage");
 
-//#region SAVING INPUT DATA WHEN USER REFRESHES THE PAGE
-
-// Saving input when user refreshes the page //
-
-const saveUserInput = (id) => {
-  const userInput = document.querySelector(id).value;
-  sessionStorage.setItem(id, userInput);
-};
-
-const retrieveUserInput = (id) => {
-  const savedInput = sessionStorage.getItem(id);
-  if (savedInput) {
-    document.querySelector(id).value = savedInput;
-  }
-};
-
-const inputFields = [
-  ".educationInput",
-  ".degreeDatesInput",
-  ".eduDescriptionTextarea",
-];
-
-inputFields.forEach((id) => {
-  retrieveUserInput(id);
-  window.addEventListener("beforeunload", () => saveUserInput(id));
-});
-
-//#endregion
-
-//#region SAVING ERROR/SUCCESS MESSAGES WHEN USER REFRESHES THE PAGE
-
-// Saving error/success messages when user refreshes the page //
-
-// .educationInput
 window.addEventListener("load", function () {
-  if (educationInput.value.length >= 2) {
-    passEducation.style.display = "block";
-    educationInput.style.border = "1px solid #98E37E";
-  } else if (educationInput.value === "") {
-    errorEducation.style.display = "none";
-    passEducation.style.display = "none";
-  } else {
-    errorEducation.style.display = "block";
-    educationInput.style.border = "1px solid #EF5050";
-    educationLabel.style.color = "#E52F2F";
+  if (this.sessionStorage.getItem("INF-image")) {
+    previewImage.src = this.sessionStorage.getItem("INF-image");
   }
 });
-
-// .degreeDatesInput
-window.addEventListener("load", function () {
-  if (degreeDatesInput.value) {
-    degreeDatesInput.style.border = "1px solid rgba(152, 227, 126, 1)";
-  } else {
-    degreeDatesInput.style.border = "";
-  }
-});
-
-// .eduDescriptionTextarea
-window.addEventListener("load", function () {
-  if (eduDescriptionTextarea.value) {
-    eduDescriptionTextarea.style.border = "1px solid rgba(152, 227, 126, 1)";
-  } else {
-    eduDescriptionTextarea.style.border = "";
-  }
-});
-
 //#endregion
+//#region MORE EXPERIENCES BUTTON
+function moreExperiences() {
+  let numberOfForms = document.querySelector("#formParent").children.length;
+  let newFormName = "form" + numberOfForms;
+  const newForm = document.createElement("form");
+  newForm.setAttribute("id", newFormName);
+  newForm.innerHTML = `
+  <!-- თანამდებობის შესაყვანი ლეიბლი და ინფუთი -->
 
-//#region CHECKING IF ALL THE INPUTS ARE CORRECTLY WRITTEN WHEN PRESSING THE "დასრულება" BUTTON
+  <div class="position">
+    <label class="redPos" for="EXP-position">თანამდებობა</label>
 
-// Pressing "დასრულება" button without having all inputs filled correctly.
-finishButton.addEventListener("click", function () {
-  if (educationInput.value.length < 2) {
-    passEducation.style.display = "none";
-    errorEducation.style.display = "block";
-    educationLabel.style.color = "rgba(229, 47, 47, 1)";
-    educationInput.style.border = "1px solid rgba(239, 80, 80, 1)";
+    <input
+      oninput="positionOnInput()"
+      type="text"
+      class="pos"
+      id="EXP-position"
+      name="EXP-position"
+      placeholder="დეველოპერი, დიზაინერი, ა.შ."
+      required
+      minlength="2"
+    />
+    <img
+      class="passPosition"
+      id="passPosition"
+      src="Images/GreenCheckMark.png"
+      alt="GreenCheckMark"
+    />
+    <img
+      class="errorPosition"
+      id="errorPosition"
+      src="Images/ErrorSign.png"
+      alt="errorSign"
+    />
+    <small>მინიმუმ 2 სიმბოლო</small>
+  </div>
+
+  <!-- დამსაქმებლის შესაყვანი ლეიბლი და ინფუთი -->
+  <div class="employer">
+    <label class="redEmployer" for="EXP-employer">დამსაქმებელი</label>
+    <input
+      type="text"
+      oninput="employerOnInput()"
+      class="employerInput"
+      id="EXP-employer"
+      name="EXP-employer"
+      placeholder="დამსაქმებელი"
+      required
+      minlength="2"
+    />
+    <img
+      class="passEmployer"
+      src="Images/GreenCheckMark.png"
+      alt="GreenCheckMark"
+      id="passEmployer"
+    />
+    <img
+      class="errorEmployer"
+      src="Images/ErrorSign.png"
+      alt="errorSign"
+      id="errorEmployer"
+    />
+    <small>მინიმუმ 2 სიმბოლო</small>
+  </div>
+
+  <div class="dates">
+    <div class="start">
+      <label class="startDateHeader" for="EXP-startingDate"
+        >დაწყების რიცხვი</label
+      >
+      <input
+        onchange="startDateOnInput()"
+        type="date"
+        name="EXP-startingDate"
+        class="startDate"
+        id="EXP-startingDate"
+        required
+      />
+    </div>
+
+    <div class="end">
+      <label class="endDateHeader" for="EXP-endingDate"
+        >დამთავრების რიცხვი</label
+      >
+      <input
+        onchange="endDateOnInput()"
+        type="date"
+        class="endDate"
+        name="EXP-endingDate"
+        id="EXP-endingDate"
+        required
+      />
+    </div>
+  </div>
+
+  <!-- აღწერის ლეიბლი და ინფუთი -->
+  <div class="descriptionAll">
+    <h2 class="descriptionHeader">აღწერა</h2>
+    <textarea
+      oninput="descriptionOnInput()"
+      name="EXP-description"
+      class="description"
+      id="EXP-description"
+      placeholder="როლი თანამდებობაზე და ზოგადი აღწერა"
+      required
+    ></textarea>
+  </div>
+    `;
+
+  document.querySelector("#formParent").appendChild(newForm);
+
+  let newResumeExperienceName = "resumeExperience" + numberOfForms;
+  const newResumeExperience = document.createElement("div");
+  newResumeExperience.setAttribute("id", newResumeExperienceName);
+  newResumeExperience.innerHTML = `
+  <div id="resumeExperience">
+    <div class="posAndCompany">
+      <h4 class="resumePosition"></h4>
+      <h4 class="resumeEmployer"></h4>
+    </div>
+    <div class="resumeDates">
+      <h5 class="resumeStartDate"></h5>
+      <h5 class="resumeEndDate"></h5>
+    </div>
+    <textarea
+      name="resumeDescription"
+      class="resumeDescription"
+      readonly
+    >
+    </textarea>
+  </div>
+    `;
+
+  document
+    .querySelector("#resumeExperienceParent")
+    .appendChild(newResumeExperience);
+}
+//#endregion
+//#region CREATE ADDITIONAL RESUME INSTANCES FOR EXPERIENCE
+function newResumeExperienceInstance() {
+  let numberOfForms = document.querySelector("#resumeExperienceParent").children
+    .length;
+  let newResumeExperienceName = "resumeExperience" + numberOfForms;
+  const newResumeExperience = document.createElement("div");
+  newResumeExperience.setAttribute("id", newResumeExperienceName);
+  newResumeExperience.innerHTML = `
+<div id="resumeExperience">
+  <div class="posAndCompany">
+    <h4 class="resumePosition"></h4>
+    <h4 class="resumeEmployer"></h4>
+  </div>
+  <div class="resumeDates">
+    <h5 class="resumeStartDate"></h5>
+    <h5 class="resumeEndDate"></h5>
+  </div>
+  <textarea
+    name="resumeDescription"
+    class="resumeDescription"
+    readonly
+  >
+  </textarea>
+</div>
+  `;
+
+  document
+    .querySelector("#resumeExperienceParent")
+    .appendChild(newResumeExperience);
+}
+//#endregion
+//#region NEXT BUTTON
+function goNext() {
+  if (
+    positionPass.style.display === "block" &&
+    employerPass.style.display === "block" &&
+    sessionStorage.getItem("EXP-startingDate") !== "" &&
+    sessionStorage.getItem("EXP-endingDate") !== "" &&
+    sessionStorage.getItem("EXP-description") !== ""
+  ) {
+    window.location.href = "../განათლება/index.html";
+  } else {
+    console.log(positionPass.style.display);
+    console.log(employerPass.style.display);
+    console.log(startingDate);
+    console.log(endingDate);
+    console.log(description);
+    if (sessionStorage.getItem("EXP-position").length === 0) {
+      let positionElement = document.querySelector("#EXP-position");
+      positionElement.style.border = "1px solid #EF5050";
+      positionPass.style.display = "none";
+      positionError.style.display = "block";
+      document.querySelector(".redPos").style.color = "#E52F2F";
+    } else {
+      errorSuccessHandlingForPosition();
+    }
+    if (sessionStorage.getItem("EXP-employer").length === 0) {
+      let employerElement = document.querySelector("#EXP-employer");
+      employerElement.style.border = "1px solid #EF5050";
+      employerPass.style.display = "none";
+      employerError.style.display = "block";
+      document.querySelector(".redEmployer").style.color = "#E52F2F";
+    } else {
+      errorSuccessHandlingForEmployer();
+    }
+    if (sessionStorage.getItem("EXP-description").length === 0) {
+      let descriptionElement = document.querySelector("#EXP-description");
+      descriptionElement.style.border = "1px solid #EF5050";
+      document.querySelector(".descriptionHeader").style.color = "#E52F2F";
+    } else {
+      errorSuccessHandlingForDescription();
+    }
+    if (!sessionStorage.getItem("EXP-startingDate")) {
+      let startingDateElement = document.querySelector("#EXP-startingDate");
+      startingDateElement.style.border = "1px solid #EF5050";
+      document.querySelector(".startDateHeader").style.color = "#E52F2F";
+    } else {
+      errorSuccessHandlingForStartDate();
+    }
+    if (!sessionStorage.getItem("EXP-endingDate")) {
+      let endingDateElement = document.querySelector("#EXP-endingDate");
+      endingDateElement.style.border = "1px solid #EF5050";
+      document.querySelector(".endDateHeader").style.color = "#E52F2F";
+    } else {
+      errorSuccessHandlingForEndDate();
+    }
   }
-
-  if (!degreeDatesInput.value) {
-    degreeDatesInput.style.border = "1px solid rgba(239, 80, 80, 1)";
-    degreeDatesLabel.style.color = "rgba(239, 80, 80, 1)";
-  }
-
-  if (eduDescriptionTextarea.value === "") {
-    eduDescriptionTextarea.style.border = "1px solid rgba(239, 80, 80, 1)";
-    eduDescriptionH2.style.color = "rgba(239, 80, 80, 1)";
-  }
-});
-
+}
+//#endregion
+//#region GO BACK BUTTON
+function goBack() {
+  sessionStorage.clear();
+  window.location.href = "../Main/index.html";
+}
 //#endregion
