@@ -229,7 +229,7 @@ input::placeholder {
   color: #2e2e2e;
 }
 
-.passPos {
+.passPosition {
   height: 18.752519607543945px;
   width: 20.99802017211914px;
   border-radius: 0px;
@@ -240,7 +240,7 @@ input::placeholder {
   display: none;
 }
 
-.errorPos {
+.errorPosition {
   height: 18.752519607543945px;
   width: 20.99802017211914px;
   border-radius: 0px;
@@ -433,15 +433,12 @@ input::placeholder {
   border: none;
 }
 
-.right {
+.resume {
   background-color: #ffffff;
   width: 822px;
   height: 1080px;
-}
-
-.userInfo {
-  margin-left: 80px;
-  margin-top: 68px;
+  padding-left: 80px;
+  padding-top: 68px;
 }
 
 .names {
@@ -449,8 +446,8 @@ input::placeholder {
   gap: 20px;
 }
 
-.rightName,
-.rightLastName {
+#resumeFirstName,
+#resumeLastName {
   font-style: normal;
   font-weight: 700;
   font-size: 34px;
@@ -465,8 +462,14 @@ input::placeholder {
   gap: 10px;
 }
 
-.rightMail,
-.rightNumber {
+.emailLogo,
+.phoneLogo {
+  height: 16.666664123535156px;
+  width: 16.666664123535156px;
+}
+
+#resumeMailContainer,
+#resumeNumberContainer {
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
@@ -476,30 +479,29 @@ input::placeholder {
   gap: 10px;
 }
 
-.phoneLogo {
+#resumePhoneLogo {
   margin-top: 3px;
-  /* display: none; */
 }
 
-.mailLogo {
+#resumeEmailLogo {
   margin-top: 4px;
-  /* display: none; */
 }
 
-.aboutMeRight {
+.resumeAboutMe {
   margin-top: 34px;
+  border-bottom: 1px solid rgba(200, 200, 200, 1);
+  width: 660px;
 }
 
-.aboutHeader {
+.resumeAboutMeHeader {
   font-style: normal;
   font-weight: 700;
   font-size: 18px;
   line-height: 22px;
   color: #f93b1d;
-  display: none;
 }
 
-.aboutMeRight textarea {
+.resumeAboutMe textarea {
   margin-top: 15px;
   width: 400px;
   height: 100px;
@@ -508,8 +510,8 @@ input::placeholder {
   font-size: 16px;
   line-height: 22px;
   color: #000000;
-
   border: none;
+  outline: none;
   resize: none;
   background-color: transparent;
   padding: 0;
@@ -518,17 +520,12 @@ input::placeholder {
   scrollbar-width: none;
 }
 
-.aboutMeRight textarea::-webkit-scrollbar {
+.resumeAboutMe textarea::-webkit-scrollbar {
   width: 0;
   background-color: transparent;
 }
 
-.lineUnderTextarea {
-  border-top: 1px solid rgba(200, 200, 200, 1);
-  width: 400px;
-}
-
-.preview-image {
+#previewImage {
   position: absolute;
   width: 246px;
   height: 246px;
@@ -547,17 +544,12 @@ footer {
   top: 994px;
 }
 
-.new-form {
-  margin-top: -40px;
-}
-
-.experienceHeader {
+.resumeExperienceHeader {
   font-style: normal;
   font-weight: 700;
   font-size: 18px;
   line-height: 22px;
   color: #f93b1d;
-  display: none;
   margin-top: 24px;
 }
 
@@ -572,7 +564,7 @@ footer {
   margin-top: 15px;
 }
 
-.datesRight {
+.resumeDates {
   font-style: italic;
   font-weight: 400;
   font-size: 16px;
@@ -583,9 +575,9 @@ footer {
   margin-top: 7px;
 }
 
-.expDescription {
+.resumeDescription {
   width: 662px;
-  height: 90px;
+  max-height: 90px;
   margin-top: 16px;
   padding: 0;
   font-style: normal;

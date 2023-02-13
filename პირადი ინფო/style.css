@@ -570,7 +570,6 @@ input::placeholder {
   background-color: transparent;
   padding: 0;
   overflow: scroll;
-
   -ms-overflow-style: none;
   scrollbar-width: none;
 }

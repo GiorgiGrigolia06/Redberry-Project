@@ -10,12 +10,12 @@
   <body>
     <div class="left">
       <header>
-        <a href="../Main/index.html"
-          ><img
-            src="Images/ArrowBack.png"
-            alt="goBackArrow"
-            class="goBackArrow"
-        /></a>
+        <img
+          src="Images/ArrowBack.png"
+          alt="goBackArrow"
+          class="goBackArrow"
+          onclick="goBack()"
+        />
 
         <h1 class="formHeader">
           გამოცდილება<span class="pageNumber">2/3</span>
@@ -23,28 +23,32 @@
       </header>
 
       <main>
-        <div class="forms">
-          <form>
+        <div class="forms" id="formParent">
+          <form id="form">
             <!-- თანამდებობის შესაყვანი ლეიბლი და ინფუთი -->
 
             <div class="position">
-              <label class="redPos" for="pos">თანამდებობა</label>
+              <label class="redPos" for="EXP-position">თანამდებობა</label>
 
               <input
+                oninput="positionOnInput()"
                 type="text"
                 class="pos"
-                name="pos"
+                id="EXP-position"
+                name="EXP-position"
                 placeholder="დეველოპერი, დიზაინერი, ა.შ."
                 required
                 minlength="2"
               />
               <img
-                class="passPos"
+                class="passPosition"
+                id="passPosition"
                 src="Images/GreenCheckMark.png"
                 alt="GreenCheckMark"
               />
               <img
-                class="errorPos"
+                class="errorPosition"
+                id="errorPosition"
                 src="Images/ErrorSign.png"
                 alt="errorSign"
               />
@@ -53,11 +57,13 @@
 
             <!-- დამსაქმებლის შესაყვანი ლეიბლი და ინფუთი -->
             <div class="employer">
-              <label class="redEmployer" for="employer">დამსაქმებელი</label>
+              <label class="redEmployer" for="EXP-employer">დამსაქმებელი</label>
               <input
                 type="text"
+                oninput="employerOnInput()"
                 class="employerInput"
-                name="employer"
+                id="EXP-employer"
+                name="EXP-employer"
                 placeholder="დამსაქმებელი"
                 required
                 minlength="2"
@@ -66,28 +72,44 @@
                 class="passEmployer"
                 src="Images/GreenCheckMark.png"
                 alt="GreenCheckMark"
+                id="passEmployer"
               />
               <img
                 class="errorEmployer"
                 src="Images/ErrorSign.png"
                 alt="errorSign"
+                id="errorEmployer"
               />
               <small>მინიმუმ 2 სიმბოლო</small>
             </div>
 
             <div class="dates">
               <div class="start">
-                <label class="startDateHeader" for="startDate"
+                <label class="startDateHeader" for="EXP-startingDate"
                   >დაწყების რიცხვი</label
                 >
-                <input type="date" class="startDate" required />
+                <input
+                  onchange="startDateOnInput()"
+                  type="date"
+                  name="EXP-startingDate"
+                  class="startDate"
+                  id="EXP-startingDate"
+                  required
+                />
               </div>
 
               <div class="end">
-                <label class="endDateHeader" for="endDate"
+                <label class="endDateHeader" for="EXP-endingDate"
                   >დამთავრების რიცხვი</label
                 >
-                <input type="date" class="endDate" required />
+                <input
+                  onchange="endDateOnInput()"
+                  type="date"
+                  class="endDate"
+                  name="EXP-endingDate"
+                  id="EXP-endingDate"
+                  required
+                />
               </div>
             </div>
 
@@ -95,8 +117,10 @@
             <div class="descriptionAll">
               <h2 class="descriptionHeader">აღწერა</h2>
               <textarea
-                name="description"
+                oninput="descriptionOnInput()"
+                name="EXP-description"
                 class="description"
+                id="EXP-description"
                 placeholder="როლი თანამდებობაზე და ზოგადი აღწერა"
                 required
               ></textarea>
@@ -104,54 +128,79 @@
           </form>
         </div>
         <div class="allButtons">
-          <button class="moreExperience" type="button">
+          <button
+            class="moreExperience"
+            onclick="moreExperiences()"
+            type="button"
+          >
             მეტი გამოცდილების დამატება
           </button>
 
           <div class="purpleButtons">
             <button class="back" type="button">უკან</button>
-            <button type="button" class="next">შემდეგი</button>
+            <button type="button" class="next" onclick="goNext()">
+              შემდეგი
+            </button>
           </div>
         </div>
       </main>
     </div>
 
-    <div class="right" id="displayContainer">
+    <div class="resume" id="displayContainer">
       <div class="userInfo">
         <div class="uploadedImage">
-          <img class="preview-image" />
+          <img id="previewImage" />
         </div>
         <div class="names">
-          <h1 class="rightName"></h1>
-          <h1 class="rightLastName"></h1>
+          <h1 id="resumeFirstName"></h1>
+          <h1 id="resumeLastName"></h1>
         </div>
 
         <div class="mailNumber">
-          <div class="rightMail">
-            <img class="mailLogo" src="Images/emailSign.png" alt="emailLogo" />
-            <p class="mailP"></p>
+          <div id="resumeMailContainer">
+            <img
+              id="resumeEmailLogo"
+              src="Images/emailSign.png"
+              alt="emailLogo"
+            />
+            <p id="resumeMail"></p>
           </div>
-          <div class="rightNumber">
-            <img class="phoneLogo" src="Images/phoneSign.png" alt="phoneLogo" />
-            <p class="phoneP"></p>
+          <div id="resumeNumberContainer">
+            <img
+              id="resumePhoneLogo"
+              src="Images/phoneSign.png"
+              alt="phoneLogo"
+            />
+            <p id="resumeNumber"></p>
           </div>
         </div>
-        <div class="aboutMeRight">
-          <h3 class="aboutHeader" id="aboutHeader">ჩემ შესახებ</h3>
-          <textarea name="aboutMe" class="aboutMe" readonly></textarea>
-          <div class="lineUnderTextarea"></div>
+        <div class="resumeAboutMe">
+          <h3 class="resumeAboutMeHeader" id="resumeAboutMeHeader">
+            ჩემ შესახებ
+          </h3>
+          <textarea name="aboutMe" id="resumeAboutMe" readonly></textarea>
         </div>
-        <div class="experience">
-          <h3 class="experienceHeader">გამოცდილება</h3>
-          <div class="posAndCompany">
-            <h4 class="posRight"></h4>
-            <h4 class="employerRight"></h4>
+      </div>
+
+      <div class="experience">
+        <h3 class="resumeExperienceHeader">გამოცდილება</h3>
+        <div id="resumeExperienceParent">
+          <div id="resumeExperience">
+            <div class="posAndCompany">
+              <h4 class="resumePosition"></h4>
+              <h4 class="resumeEmployer"></h4>
+            </div>
+            <div class="resumeDates">
+              <h5 class="resumeStartDate"></h5>
+              <h5 class="resumeEndDate"></h5>
+            </div>
+            <textarea
+              name="resumeDescription"
+              class="resumeDescription"
+              readonly
+            >
+            </textarea>
           </div>
-          <div class="datesRight">
-            <h5 class="startdateRight"></h5>
-            <h5 class="endDateRight"></h5>
-          </div>
-          <textarea name="expDescription" class="expDescription"> </textarea>
         </div>
       </div>
     </div>
@@ -163,6 +212,6 @@
         alt="smallRedberryLogo"
       />
     </footer>
-    <script src="script.js"></script>
+    <script src="script3.js"></script>
   </body>
 </html>

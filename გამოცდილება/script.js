@@ -240,40 +240,50 @@ window.addEventListener("load", function () {
 
 // Adding a new form when pressing a button //
 
-document
-  .querySelector(".moreExperience")
-  .addEventListener("click", function () {
-    const newForm = document.createElement("form");
-    newForm.classList.add("new-form");
-    newForm.innerHTML = `<!-- თანამდებობის შესაყვანი ლეიბლი და ინფუთი -->
+function moreExperiences() {
+  let numberOfForms = document.querySelector("#formParent").children.length;
+  let newFormName = "form" + numberOfForms;
+  const newForm = document.createElement("form");
+  newForm.setAttribute("id", newFormName);
+  newForm.innerHTML = `
+    <!-- თანამდებობის შესაყვანი ლეიბლი და ინფუთი -->
 
     <div class="position">
-      <label class="redPos" for="pos">თანამდებობა</label>
+      <label class="redPos" for="EXP-position">თანამდებობა</label>
 
       <input
+        oninput="positionOnInput0()"
         type="text"
         class="pos"
-        name="pos"
+        id="EXP-position"
+        name="EXP-position"
         placeholder="დეველოპერი, დიზაინერი, ა.შ."
         required
         minlength="2"
       />
       <img
-        class="passPos"
+        class="passPosition"
+        id="passPosition"
         src="Images/GreenCheckMark.png"
         alt="GreenCheckMark"
       />
-      <img class="errorPos" src="Images/ErrorSign.png" alt="errorSign" />
+      <img
+        class="errorPosition"
+        id="errorPosition"
+        src="Images/ErrorSign.png"
+        alt="errorSign"
+      />
       <small>მინიმუმ 2 სიმბოლო</small>
     </div>
 
     <!-- დამსაქმებლის შესაყვანი ლეიბლი და ინფუთი -->
     <div class="employer">
-      <label class="redEmployer" for="employer">დამსაქმებელი</label>
+      <label class="redEmployer" for="EXP-employer">დამსაქმებელი</label>
       <input
         type="text"
         class="employerInput"
-        name="employer"
+        id="EXP-employer"
+        name="EXP-employer"
         placeholder="დამსაქმებელი"
         required
         minlength="2"
@@ -282,28 +292,42 @@ document
         class="passEmployer"
         src="Images/GreenCheckMark.png"
         alt="GreenCheckMark"
+        id="passEmployer"
       />
       <img
         class="errorEmployer"
         src="Images/ErrorSign.png"
         alt="errorSign"
+        id="errorEmployer"
       />
       <small>მინიმუმ 2 სიმბოლო</small>
     </div>
 
     <div class="dates">
       <div class="start">
-        <label class="startDateHeader" for="startDate"
+        <label class="startDateHeader" for="EXP-startingDate"
           >დაწყების რიცხვი</label
         >
-        <input type="date" id="startDate" required />
+        <input
+          type="date"
+          name="EXP-startingDate"
+          class="startDate"
+          id="EXP-startingDate"
+          required
+        />
       </div>
 
       <div class="end">
-        <label class="endDateHeader" for="endDate"
+        <label class="endDateHeader" for="EXP-endingDate"
           >დამთავრების რიცხვი</label
         >
-        <input type="date" id="endDate" required />
+        <input
+          type="date"
+          class="endDate"
+          name="EXP-endingDate"
+          id="EXP-endingDate"
+          required
+        />
       </div>
     </div>
 
@@ -311,15 +335,17 @@ document
     <div class="descriptionAll">
       <h2 class="descriptionHeader">აღწერა</h2>
       <textarea
-        name="description"
+        name="EXP-description"
         class="description"
+        id="EXP-description"
         placeholder="როლი თანამდებობაზე და ზოგადი აღწერა"
         required
       ></textarea>
-    </div>`;
+    </div>
+    `;
 
-    document.querySelector(".forms").appendChild(newForm);
-  });
+  document.querySelector("#formParent").appendChild(newForm);
+}
 // End of Adding a new form when pressing a button //
 
 // Showing saved data from previous page //
