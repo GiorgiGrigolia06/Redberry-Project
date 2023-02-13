@@ -291,7 +291,7 @@ function goNext() {
       imagePass.style.display = "none";
       imageError.style.display = "block";
     }
-    if (firstName.length === 0) {
+    if (!this.sessionStorage.getItem("INF-firstName")) {
       let firstNameElement = document.querySelector("#INF-firstName");
       firstNameElement.style.border = "1px solid #EF5050";
       firstNamePass.style.display = "none";
@@ -300,7 +300,7 @@ function goNext() {
     } else {
       errorSuccessHandlingForFirstName();
     }
-    if (lastName.length === 0) {
+    if (!this.sessionStorage.getItem("INF-lastName")) {
       let lastNameElement = document.querySelector("#INF-lastName");
       lastNameElement.style.border = "1px solid #EF5050";
       lastNamePass.style.display = "none";
@@ -309,7 +309,7 @@ function goNext() {
     } else {
       errorSuccessHandlingForLastName();
     }
-    if (email.length === 0) {
+    if (!this.sessionStorage.getItem("INF-email")) {
       let emailElement = document.querySelector("#INF-email");
       emailPass.style.display = "none";
       emailError.style.display = "block";
@@ -318,7 +318,7 @@ function goNext() {
     } else {
       errorSuccessHandlingForEmail();
     }
-    if (mobileNumber.length === 0) {
+    if (!this.sessionStorage.getItem("INF-mobileNumber")) {
       let numberElement = document.querySelector("#INF-mobileNumber");
       mobileNumberPass.style.display = "none";
       mobileNumberError.style.display = "block";

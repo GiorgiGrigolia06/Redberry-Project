@@ -22,10 +22,11 @@
 
       <main>
         <div class="forms">
-          <form>
+          <form id="form">
             <div class="education">
               <label class="educationLabel" for="education">სასწავლებელი</label>
               <input
+                oninput="educationOnInput()"
                 type="text"
                 name="education"
                 class="educationInput"
@@ -50,7 +51,13 @@
             <div class="degree">
               <div class="degreeInputAndLabel">
                 <label class="degreeLabel" for="degree">ხარისხი</label>
-                <select id="degree" name="degree" class="degreeInput" required>
+                <select
+                  id="degree"
+                  name="degree"
+                  class="degreeInput"
+                  onchange="selectOnChange(this)"
+                  required
+                >
                   <option value="" disabled selected hidden>
                     აირჩიეთ ხარისი
                   </option>
@@ -61,6 +68,7 @@
                   >დამთავრების რიცხვი</label
                 >
                 <input
+                  oninput="degreeDateOnInput()"
                   type="date"
                   name="degreeDates"
                   class="degreeDatesInput"
@@ -73,6 +81,7 @@
             <div class="educationDescription">
               <h2 class="eduDescription">აღწერა</h2>
               <textarea
+                oninput="eduDescriptionOnInput()"
                 name="eduDesctiption"
                 class="eduDescriptionTextarea"
                 placeholder="განათლების აღწერა"
@@ -83,100 +92,109 @@
         </div>
 
         <div class="allButtons">
-          <button class="moreEducation" type="button">
+          <button
+            class="moreEducation"
+            onclick="moreEducations()"
+            type="button"
+          >
             მეტი სასწავლებლის დამატება
           </button>
 
           <div class="purpleButtons">
             <button class="back" type="button">უკან</button>
-            <button type="button" class="finish">დასრულება</button>
+            <button type="button" onclick="goNext()" class="finish">
+              დასრულება
+            </button>
           </div>
         </div>
       </main>
     </div>
 
     <div class="resume" id="displayContainer">
-      <div class="userInfo">
-        <div class="uploadedImage">
-          <img id="previewImage" />
-        </div>
-        <div class="names">
-          <h1 id="resumeFirstName"></h1>
-          <h1 id="resumeLastName"></h1>
+      <div class="resumeWithoutFooter">
+        <div class="userInfo">
+          <div class="uploadedImage">
+            <img id="previewImage" />
+          </div>
+          <div class="names">
+            <h1 id="resumeFirstName"></h1>
+            <h1 id="resumeLastName"></h1>
+          </div>
+
+          <div class="mailNumber">
+            <div id="resumeMailContainer">
+              <img
+                id="resumeEmailLogo"
+                src="Images/emailSign.png"
+                alt="emailLogo"
+              />
+              <p id="resumeMail"></p>
+            </div>
+            <div id="resumeNumberContainer">
+              <img
+                id="resumePhoneLogo"
+                src="Images/phoneSign.png"
+                alt="phoneLogo"
+              />
+              <p id="resumeNumber"></p>
+            </div>
+          </div>
+          <div class="resumeAboutMe">
+            <h3 class="resumeAboutMeHeader" id="resumeAboutMeHeader">
+              ჩემ შესახებ
+            </h3>
+            <textarea name="aboutMe" id="resumeAboutMe" readonly></textarea>
+          </div>
         </div>
 
-        <div class="mailNumber">
-          <div id="resumeMailContainer">
-            <img
-              id="resumeEmailLogo"
-              src="Images/emailSign.png"
-              alt="emailLogo"
-            />
-            <p id="resumeMail"></p>
-          </div>
-          <div id="resumeNumberContainer">
-            <img
-              id="resumePhoneLogo"
-              src="Images/phoneSign.png"
-              alt="phoneLogo"
-            />
-            <p id="resumeNumber"></p>
+        <div class="experience">
+          <h3 class="resumeExperienceHeader">გამოცდილება</h3>
+          <div id="resumeExperienceParent">
+            <div id="resumeExperience">
+              <div class="posAndCompany">
+                <h4 class="resumePosition"></h4>
+                <h4 class="resumeEmployer"></h4>
+              </div>
+              <div class="resumeDates">
+                <h5 class="resumeStartDate"></h5>
+                <h5 class="resumeEndDate"></h5>
+              </div>
+              <textarea
+                name="resumeDescription"
+                class="resumeDescription"
+                readonly
+              >
+              </textarea>
+            </div>
           </div>
         </div>
-        <div class="resumeAboutMe">
-          <h3 class="resumeAboutMeHeader" id="resumeAboutMeHeader">
-            ჩემ შესახებ
-          </h3>
-          <textarea name="aboutMe" id="resumeAboutMe" readonly></textarea>
-        </div>
-      </div>
 
-      <div class="experience">
-        <h3 class="resumeExperienceHeader">გამოცდილება</h3>
-        <div id="resumeExperienceParent">
-          <div id="resumeExperience">
-            <div class="posAndCompany">
-              <h4 class="resumePosition"></h4>
-              <h4 class="resumeEmployer"></h4>
+        <div class="educationResume">
+          <h3 class="resumeEducationHeader">განათლება</h3>
+          <div id="resumeEducation">
+            <div class="educationPlaceAndDegree">
+              <h4 class="resumeEducationPlace"></h4>
+              <h4 class="resumeEducationDegree"></h4>
             </div>
-            <div class="resumeDates">
-              <h5 class="resumeStartDate"></h5>
-              <h5 class="resumeEndDate"></h5>
-            </div>
+            <h5 class="resumeEducationEndDate"></h5>
             <textarea
-              name="resumeDescription"
-              class="resumeDescription"
+              name="resumeEducationDescription"
+              class="resumeEducationDescription"
+              id="resumeEducationDescription"
               readonly
-            >
-            </textarea>
+            ></textarea>
           </div>
         </div>
       </div>
-
-      <div class="educationResume">
-        <h3 class="resumeEducationHeader">განათლება</h3>
-        <div class="educationPlaceAndDegree">
-          <h4 class="resumeEducationPlace">პირველი კლასიკური გიმნაზია</h4>
-          <h4 class="resumeEducationDegree">მოსწავლე</h4>
-        </div>
-        <h5 class="resumeEducationEndDate">2020-09-09</h5>
-        <textarea
-          name="resumeEducationDescription"
-          class="resumeEducationDescription"
-          id="resumeEducationDescription"
-          readonly
-        >
-ვსწავლობდი გულმოდგინეთ. მყავდა ფრიადები. რაც შემეძლო — ვქენი. კომპიუტერები მიყვარდა. ვიჯექი ჩემთვის, ვაკაკუნებდი ამ კლავიშებზე. მეუნებოდნენ — დაჯექი, წაიკითხე რამე, რას აკაკუნებ, დრო მოვა და ჩაგიკაკუნებსო. აჰა, მოვიდა დრო და ვერა ვარ დეველოპერი?</textarea
-        >
-      </div>
+      <footer>
+        <img
+          class="smallRedberryLogo"
+          src="Images/smallLogoFooter.png"
+          alt="smallRedberryLogo"
+        />
+      </footer>
     </div>
-    <footer>
-      <img
-        class="smallRedberryLogo"
-        src="Images/smallLogoFooter.png"
-        alt="smallRedberryLogo"
-      />
-    </footer>
+
     <script src="script.js"></script>
   </body>
 </html>

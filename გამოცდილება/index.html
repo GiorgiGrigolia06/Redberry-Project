@@ -147,71 +147,74 @@
     </div>
 
     <div class="resume" id="displayContainer">
-      <div class="userInfo">
-        <div class="uploadedImage">
-          <img id="previewImage" />
-        </div>
-        <div class="names">
-          <h1 id="resumeFirstName"></h1>
-          <h1 id="resumeLastName"></h1>
+      <div class="resumeWithoutFooter">
+        <div class="userInfo">
+          <div class="uploadedImage">
+            <img id="previewImage" />
+          </div>
+          <div class="names">
+            <h1 id="resumeFirstName"></h1>
+            <h1 id="resumeLastName"></h1>
+          </div>
+
+          <div class="mailNumber">
+            <div id="resumeMailContainer">
+              <img
+                id="resumeEmailLogo"
+                src="Images/emailSign.png"
+                alt="emailLogo"
+              />
+              <p id="resumeMail"></p>
+            </div>
+            <div id="resumeNumberContainer">
+              <img
+                id="resumePhoneLogo"
+                src="Images/phoneSign.png"
+                alt="phoneLogo"
+              />
+              <p id="resumeNumber"></p>
+            </div>
+          </div>
+          <div class="resumeAboutMe">
+            <h3 class="resumeAboutMeHeader" id="resumeAboutMeHeader">
+              ჩემ შესახებ
+            </h3>
+            <textarea name="aboutMe" id="resumeAboutMe" readonly></textarea>
+          </div>
         </div>
 
-        <div class="mailNumber">
-          <div id="resumeMailContainer">
-            <img
-              id="resumeEmailLogo"
-              src="Images/emailSign.png"
-              alt="emailLogo"
-            />
-            <p id="resumeMail"></p>
+        <div class="experience">
+          <h3 class="resumeExperienceHeader">გამოცდილება</h3>
+          <div id="resumeExperienceParent">
+            <div id="resumeExperience">
+              <div class="posAndCompany">
+                <h4 class="resumePosition"></h4>
+                <h4 class="resumeEmployer"></h4>
+              </div>
+              <div class="resumeDates">
+                <h5 class="resumeStartDate"></h5>
+                <h5 class="resumeEndDate"></h5>
+              </div>
+              <textarea
+                name="resumeDescription"
+                class="resumeDescription"
+                readonly
+              >
+              </textarea>
+            </div>
           </div>
-          <div id="resumeNumberContainer">
-            <img
-              id="resumePhoneLogo"
-              src="Images/phoneSign.png"
-              alt="phoneLogo"
-            />
-            <p id="resumeNumber"></p>
-          </div>
-        </div>
-        <div class="resumeAboutMe">
-          <h3 class="resumeAboutMeHeader" id="resumeAboutMeHeader">
-            ჩემ შესახებ
-          </h3>
-          <textarea name="aboutMe" id="resumeAboutMe" readonly></textarea>
         </div>
       </div>
 
-      <div class="experience">
-        <h3 class="resumeExperienceHeader">გამოცდილება</h3>
-        <div id="resumeExperienceParent">
-          <div id="resumeExperience">
-            <div class="posAndCompany">
-              <h4 class="resumePosition"></h4>
-              <h4 class="resumeEmployer"></h4>
-            </div>
-            <div class="resumeDates">
-              <h5 class="resumeStartDate"></h5>
-              <h5 class="resumeEndDate"></h5>
-            </div>
-            <textarea
-              name="resumeDescription"
-              class="resumeDescription"
-              readonly
-            >
-            </textarea>
-          </div>
-        </div>
-      </div>
+      <footer>
+        <img
+          class="smallRedberryLogo"
+          src="Images/smallLogoFooter.png"
+          alt="smallRedberryLogo"
+        />
+      </footer>
     </div>
 
-    <footer>
-      <img
-        class="smallRedberryLogo"
-        src="Images/smallLogoFooter.png"
-        alt="smallRedberryLogo"
-      />
-    </footer>
     <script src="script3.js"></script>
   </body>
 </html>

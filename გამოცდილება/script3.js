@@ -168,7 +168,6 @@ function positionOnInput() {
   const positionsArray = Array.from(positionsInputElements).map(
     (inputElement) => inputElement.value
   );
-  console.log(positionsArray);
   position = document.querySelector("#EXP-position").value;
   displayPosition(positionsArray);
   displayResumePosition(positionsArray);
@@ -485,17 +484,13 @@ function goNext() {
   if (
     positionPass.style.display === "block" &&
     employerPass.style.display === "block" &&
-    sessionStorage.getItem("EXP-startingDate") !== "" &&
-    sessionStorage.getItem("EXP-endingDate") !== "" &&
+    sessionStorage.getItem("EXP-startingDate") &&
+    sessionStorage.getItem("EXP-endingDate") &&
+    sessionStorage.getItem("EXP-description") &&
     sessionStorage.getItem("EXP-description") !== ""
   ) {
     window.location.href = "../განათლება/index.html";
   } else {
-    console.log(positionPass.style.display);
-    console.log(employerPass.style.display);
-    console.log(startingDate);
-    console.log(endingDate);
-    console.log(description);
     if (sessionStorage.getItem("EXP-position").length === 0) {
       let positionElement = document.querySelector("#EXP-position");
       positionElement.style.border = "1px solid #EF5050";
@@ -505,7 +500,7 @@ function goNext() {
     } else {
       errorSuccessHandlingForPosition();
     }
-    if (sessionStorage.getItem("EXP-employer").length === 0) {
+    if (!sessionStorage.getItem("EXP-employer")) {
       let employerElement = document.querySelector("#EXP-employer");
       employerElement.style.border = "1px solid #EF5050";
       employerPass.style.display = "none";
@@ -514,7 +509,7 @@ function goNext() {
     } else {
       errorSuccessHandlingForEmployer();
     }
-    if (sessionStorage.getItem("EXP-description").length === 0) {
+    if (!sessionStorage.getItem("EXP-description")) {
       let descriptionElement = document.querySelector("#EXP-description");
       descriptionElement.style.border = "1px solid #EF5050";
       document.querySelector(".descriptionHeader").style.color = "#E52F2F";

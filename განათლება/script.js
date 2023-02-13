@@ -1,6 +1,6 @@
-//#region API FOR FETCHING THE DEGREES
-const select = document.getElementById("degree");
-
+//#region CREATING RELEVANT NUMBER OF FORMS
+let selects = document.querySelectorAll('select[name="degree"]');
+let options = [];
 fetch("https://resume.redberryinternship.ge/api/degrees")
   .then((response) => response.json())
   .then((data) => {
@@ -8,15 +8,11 @@ fetch("https://resume.redberryinternship.ge/api/degrees")
       const option = document.createElement("option");
       option.value = item.id;
       option.text = item.title;
-      select.add(option);
+      options.push(option);
+      syncDegreeValues();
     });
   });
-select.addEventListener("change", (event) => {
-  const selectedOption = event.target.selectedOptions[0];
-  sessionStorage.setItem("EDU-degree", selectedOption.text);
-});
-//#endregion
-//#region CREATING RELEVANT NUMBER OF FORMS
+
 const numberOfEducations = sessionStorage.getItem("EDU-education");
 if (numberOfEducations) {
   const len = numberOfEducations.split(",").length;
@@ -30,6 +26,18 @@ if (positionsInSession) {
   for (i = 1; i < len; i++) {
     newResumeExperienceInstance();
   }
+}
+//#endregion
+//#region API FOR FETCHING THE DEGREES
+function syncDegreeValues() {
+  selects.forEach((select) => {
+    if (select.selectedOptions[1]) {
+    } else {
+      options.forEach((option) => {
+        select.add(option);
+      });
+    }
+  });
 }
 //#endregion
 //#region READING INPUT VALUES
@@ -100,36 +108,109 @@ const educationInSession = sessionStorage.getItem("EDU-education");
 if (educationInSession) {
   const splittedEducationInSession = educationInSession.split(",");
   displayEducation(splittedEducationInSession);
-  displayResumePosition(splittedEducationInSession);
+  displayResumeEducation(splittedEducationInSession);
+}
+
+const degreeInSession = sessionStorage.getItem("EDU-degree");
+if (degreeInSession) {
+  const splittedDegreeInSession = degreeInSession.split(",");
+  displayDegree(splittedDegreeInSession);
+  displayResumeDegree(splittedDegreeInSession);
 }
 
 const degreeDateInSession = sessionStorage.getItem("EDU-degreeDate");
 if (degreeDateInSession) {
-  const splittedDegreeDateInSession = educationInSession.split(",");
+  const splittedDegreeDateInSession = degreeDateInSession.split(",");
   displayDegreeDate(splittedDegreeDateInSession);
   displayResumeDegreeDate(splittedDegreeDateInSession);
 }
 
 const eduDescriptionInSession = sessionStorage.getItem("EDU-description");
 if (eduDescriptionInSession) {
-  const splittedEduDescriptionInSession = educationInSession.split(",");
+  const splittedEduDescriptionInSession = eduDescriptionInSession.split(",");
   displayEduDescription(splittedEduDescriptionInSession);
   displayResumeEduDescription(splittedEduDescriptionInSession);
 }
+//#endregion
+//#region SYNCING SESSION VALUES
+//EDU
+function displayResumeDegree(degrees) {
+  const educationsData = document.querySelectorAll(
+    'h4[class="resumeEducationPlace"]'
+  );
+  educations.forEach((education, index) => {
+    educationsData[index].innerHTML = education;
+  });
+}
 
-//
-function displayDegreeDate(degreeDate) {
+function displayEducation(educations) {
+  const inputs = document.querySelectorAll('input[name="education"]');
+  educations.forEach((education, index) => {
+    inputs[index].value = education;
+  });
+}
+
+function displayResumeEducation(educations) {
+  const educationsData = document.querySelectorAll(
+    'h4[class="resumeEducationPlace"]'
+  );
+  educations.forEach((education, index) => {
+    educationsData[index].innerHTML = education;
+  });
+}
+
+function displayDegree(degrees) {
+  const inputs = document.querySelectorAll('select[name="degree"]');
+  degrees.forEach((degree, index) => {
+    inputs[index].selectedOptions[0].innerHTML = degree;
+  });
+}
+
+function displayResumeDegree(degrees) {
+  const degreesData = document.querySelectorAll(
+    'h4[class="resumeEducationDegree"]'
+  );
+  degrees.forEach((degree, index) => {
+    degreesData[index].innerHTML = degree;
+  });
+}
+
+function displayDegreeDate(degreeDates) {
+  const degreeInputElements = document.querySelectorAll(
+    'select[name="degree"]'
+  );
+  degreeDates.forEach((degreeDate, index) => {
+    degreeInputElements[index].value = degreeDate;
+  });
+}
+
+function displayResumeDegreeDate(degreeDates) {
   const resumeDegreeData = document.querySelectorAll(
     'h5[class="resumeEducationEndDate"]'
   );
-  degreeDate.forEach((degreeDate, index) => {
+  degreeDates.forEach((degreeDate, index) => {
     resumeDegreeData[index].innerHTML = degreeDate;
   });
 }
-//
 
-//#endregion
-//#region SYNCING SESSION VALUES
+function displayEduDescription(eduDescriptions) {
+  const inputs = document.querySelectorAll(
+    'textarea[class="eduDescriptionTextarea"]'
+  );
+  eduDescriptions.forEach((eduDescription, index) => {
+    inputs[index].value = eduDescription;
+  });
+}
+
+function displayResumeEduDescription(eduDescriptions) {
+  const resumeEduDescription = document.querySelectorAll(
+    'textarea[class="resumeEducationDescription"]'
+  );
+  eduDescriptions.forEach((eduDescription, index) => {
+    resumeEduDescription[index].innerHTML = eduDescription;
+  });
+}
+//EXP
 function displayResumeExperience(experiences) {
   const resumeExperiences = document.querySelectorAll(
     'textarea[name="resumeDescription"]'
@@ -183,80 +264,67 @@ function displayResumePosition(positions) {
 // errorSuccessHandlingForDescription();
 //#endregion
 //#region ONINPUT
-function positionOnInput() {
-  const positionsInputElements = document.querySelectorAll(
-    'input[name="EXP-position"]'
+function selectOnChange(element) {
+  const degreeInputElements = document.querySelectorAll(
+    'select[name="degree"]'
   );
-  const positionsArray = Array.from(positionsInputElements).map(
-    (inputElement) => inputElement.value
+  const degreeArray = Array.from(degreeInputElements).map(
+    (inputElement) => inputElement.selectedOptions[0].innerHTML
   );
-  console.log(positionsArray);
-  position = document.querySelector("#EXP-position").value;
-  displayPosition(positionsArray);
-  displayResumePosition(positionsArray);
-  sessionStorage.setItem("EXP-position", positionsArray);
-  //ERROR / SUCCESS HANDLING
-  errorSuccessHandlingForPosition();
+  sessionStorage.setItem("EDU-degree", degreeArray);
+  displayDegree(degreeArray);
+  displayResumeDegree(degreeArray);
+  //const allChosenDegrees = sessionStorage.getItem("EDU-degree");
+  // if (allChosenDegrees) {
+  //   const splittedallChosenDegrees = allChosenDegrees.split(",");
+  //   //displayDegree(splittedallChosenDegrees);
+  //   displayResumeDegree(splittedallChosenDegrees);
+  // }
 }
 
-function employerOnInput() {
-  const employersInputElements = document.querySelectorAll(
-    'input[name="EXP-employer"]'
+function educationOnInput() {
+  const educationInputElements = document.querySelectorAll(
+    'input[name="education"]'
   );
-  const employersArray = Array.from(employersInputElements).map(
+  const educationArray = Array.from(educationInputElements).map(
     (inputElement) => inputElement.value
   );
-  employer = document.querySelector("#EXP-employer").value;
-  displayEmployer(employersArray);
-  displayResumeEmployer(employersArray);
-  sessionStorage.setItem("EXP-employer", employersArray);
+  education = document.querySelector("#education").value;
+  displayEducation(educationArray);
+  displayResumeEducation(educationArray);
+  sessionStorage.setItem("EDU-education", educationArray);
   //ERROR / SUCCESS HANDLING
-  errorSuccessHandlingForEmployer();
+  //errorSuccessHandlingForPosition();
 }
 
-function startDateOnInput() {
-  const startingDatesInputElements = document.querySelectorAll(
-    'input[name="EXP-startingDate"]'
+function degreeDateOnInput() {
+  const degreeDatesInputElements = document.querySelectorAll(
+    'input[name="degreeDates"]'
   );
-  const startingDatesArray = Array.from(startingDatesInputElements).map(
+  const degreeDatesArray = Array.from(degreeDatesInputElements).map(
     (inputElement) => inputElement.value
   );
-  startingDate = document.querySelector("#EXP-startingDate").value;
-  displayStartingDate(startingDatesArray);
-  displayResumeStartingDate(startingDatesArray);
-  sessionStorage.setItem("EXP-startingDate", startingDatesArray);
+  degreeDate = document.querySelector("#degreeDates").value;
+  displayDegreeDate(degreeDatesArray);
+  displayResumeDegreeDate(degreeDatesArray);
+  sessionStorage.setItem("EDU-degreeDate", degreeDatesArray);
   //ERROR / SUCCESS HANDLING
-  errorSuccessHandlingForStartDate();
+  //errorSuccessHandlingForStartDate();
 }
 
-function endDateOnInput() {
-  const endingDatesInputElements = document.querySelectorAll(
-    'input[name="EXP-endingDate"]'
+function eduDescriptionOnInput() {
+  const eduDescriptionInputElements = document.querySelectorAll(
+    'textarea[name="eduDesctiption"]'
   );
-  const endingDatesArray = Array.from(endingDatesInputElements).map(
+  const eduDescriptionsArray = Array.from(eduDescriptionInputElements).map(
     (inputElement) => inputElement.value
   );
-  endingDate = document.querySelector("#EXP-endingDate").value;
-  displayEndingDate(endingDatesArray);
-  displayResumeEndingDate(endingDatesArray);
-  sessionStorage.setItem("EXP-endingDate", endingDatesArray);
+  description = document.querySelector(".eduDescriptionTextarea").value;
+  displayEduDescription(eduDescriptionsArray);
+  displayResumeEduDescription(eduDescriptionsArray);
+  sessionStorage.setItem("EDU-description", eduDescriptionsArray);
   //ERROR / SUCCESS HANDLING
-  errorSuccessHandlingForEndDate();
-}
-
-function descriptionOnInput() {
-  const descriptionsInputElements = document.querySelectorAll(
-    'textarea[name="EXP-description"]'
-  );
-  const descriptionsArray = Array.from(descriptionsInputElements).map(
-    (inputElement) => inputElement.value
-  );
-  description = document.querySelector("#EXP-description").value;
-  displayExperience(descriptionsArray);
-  displayResumeExperience(descriptionsArray);
-  sessionStorage.setItem("EXP-description", descriptionsArray);
-  //ERROR / SUCCESS HANDLING
-  errorSuccessHandlingForDescription();
+  //errorSuccessHandlingForDescription();
 }
 
 //#endregion
@@ -364,142 +432,98 @@ window.addEventListener("load", function () {
   }
 });
 //#endregion
-//#region MORE EXPERIENCES BUTTON
-function moreExperiences() {
-  let numberOfForms = document.querySelector("#formParent").children.length;
+//#region MORE EDUCATIONS BUTTON
+function moreEducations() {
+  let numberOfForms = document.querySelector(".forms").children.length;
   let newFormName = "form" + numberOfForms;
   const newForm = document.createElement("form");
   newForm.setAttribute("id", newFormName);
   newForm.innerHTML = `
-  <!-- თანამდებობის შესაყვანი ლეიბლი და ინფუთი -->
-
-  <div class="position">
-    <label class="redPos" for="EXP-position">თანამდებობა</label>
-
-    <input
-      oninput="positionOnInput()"
-      type="text"
-      class="pos"
-      id="EXP-position"
-      name="EXP-position"
-      placeholder="დეველოპერი, დიზაინერი, ა.შ."
-      required
-      minlength="2"
-    />
-    <img
-      class="passPosition"
-      id="passPosition"
-      src="Images/GreenCheckMark.png"
-      alt="GreenCheckMark"
-    />
-    <img
-      class="errorPosition"
-      id="errorPosition"
-      src="Images/ErrorSign.png"
-      alt="errorSign"
-    />
-    <small>მინიმუმ 2 სიმბოლო</small>
+  <div class="education">
+  <label class="educationLabel" for="education">სასწავლებელი</label>
+  <input
+    oninput="educationOnInput()"
+    type="text"
+    name="education"
+    class="educationInput"
+    required
+    id="education"
+    placeholder="სასწავლებელი"
+    minlength="2"
+  />
+  <img
+    class="passEducation"
+    src="Images/GreenCheckMark.png"
+    alt="GreenCheckMark"
+  />
+  <img
+    class="errorEducation"
+    src="Images/ErrorSign.png"
+    alt="errorSign"
+  />
+  <small>მინიმუმ 2 სიმბოლო</small>
   </div>
 
-  <!-- დამსაქმებლის შესაყვანი ლეიბლი და ინფუთი -->
-  <div class="employer">
-    <label class="redEmployer" for="EXP-employer">დამსაქმებელი</label>
-    <input
-      type="text"
-      oninput="employerOnInput()"
-      class="employerInput"
-      id="EXP-employer"
-      name="EXP-employer"
-      placeholder="დამსაქმებელი"
-      required
-      minlength="2"
-    />
-    <img
-      class="passEmployer"
-      src="Images/GreenCheckMark.png"
-      alt="GreenCheckMark"
-      id="passEmployer"
-    />
-    <img
-      class="errorEmployer"
-      src="Images/ErrorSign.png"
-      alt="errorSign"
-      id="errorEmployer"
-    />
-    <small>მინიმუმ 2 სიმბოლო</small>
-  </div>
-
-  <div class="dates">
-    <div class="start">
-      <label class="startDateHeader" for="EXP-startingDate"
-        >დაწყების რიცხვი</label
-      >
-      <input
-        onchange="startDateOnInput()"
-        type="date"
-        name="EXP-startingDate"
-        class="startDate"
-        id="EXP-startingDate"
-        required
-      />
+  <div class="degree">
+    <div class="degreeInputAndLabel">
+      <label class="degreeLabel" for="degree">ხარისხი</label>
+      <select id="degree" name="degree" class="degreeInput" onchange="selectOnChange()" required>
+        <option value="" disabled selected hidden>
+          აირჩიეთ ხარისი
+        </option>
+      </select>
     </div>
-
-    <div class="end">
-      <label class="endDateHeader" for="EXP-endingDate"
+    <div class="degreeDates">
+      <label class="degreeDatesLabel" for="degreeDates"
         >დამთავრების რიცხვი</label
       >
       <input
-        onchange="endDateOnInput()"
+        oninput="degreeDateOnInput()"
         type="date"
-        class="endDate"
-        name="EXP-endingDate"
-        id="EXP-endingDate"
+        name="degreeDates"
+        class="degreeDatesInput"
+        id="degreeDates"
         required
       />
     </div>
   </div>
 
-  <!-- აღწერის ლეიბლი და ინფუთი -->
-  <div class="descriptionAll">
-    <h2 class="descriptionHeader">აღწერა</h2>
+  <div class="educationDescription">
+    <h2 class="eduDescription">აღწერა</h2>
     <textarea
-      oninput="descriptionOnInput()"
-      name="EXP-description"
-      class="description"
-      id="EXP-description"
-      placeholder="როლი თანამდებობაზე და ზოგადი აღწერა"
+      oninput="eduDescriptionOnInput()"
+      name="eduDesctiption"
+      class="eduDescriptionTextarea"
+      placeholder="განათლების აღწერა"
       required
     ></textarea>
   </div>
-    `;
+  `;
 
-  document.querySelector("#formParent").appendChild(newForm);
+  document.querySelector(".forms").appendChild(newForm);
 
-  let newResumeExperienceName = "resumeExperience" + numberOfForms;
-  const newResumeExperience = document.createElement("div");
-  newResumeExperience.setAttribute("id", newResumeExperienceName);
-  newResumeExperience.innerHTML = `
-  <div id="resumeExperience">
-    <div class="posAndCompany">
-      <h4 class="resumePosition"></h4>
-      <h4 class="resumeEmployer"></h4>
+  let newResumeEducationName = "resumeEducation" + numberOfForms;
+  const newResumeEducation = document.createElement("div");
+  newResumeEducation.setAttribute("id", newResumeEducationName);
+  newResumeEducation.innerHTML = `
+  <div id="resumeEducation">
+    <div class="educationPlaceAndDegree">
+      <h4 class="resumeEducationPlace"></h4>
+      <h4 class="resumeEducationDegree"></h4>
     </div>
-    <div class="resumeDates">
-      <h5 class="resumeStartDate"></h5>
-      <h5 class="resumeEndDate"></h5>
-    </div>
+    <h5 class="resumeEducationEndDate"></h5>
     <textarea
-      name="resumeDescription"
-      class="resumeDescription"
+      name="resumeEducationDescription"
+      class="resumeEducationDescription"
+      id="resumeEducationDescription"
       readonly
-    >
-    </textarea>
+    ></textarea>
   </div>
-    `;
+  `;
 
-  document
-    .querySelector("#resumeExperienceParent")
-    .appendChild(newResumeExperience);
+  document.querySelector(".educationResume").appendChild(newResumeEducation);
+  selects = document.querySelectorAll('select[name="degree"]');
+  syncDegreeValues();
 }
 //#endregion
 //#region CREATE ADDITIONAL RESUME INSTANCES FOR EXPERIENCE
@@ -533,62 +557,102 @@ function newResumeExperienceInstance() {
     .appendChild(newResumeExperience);
 }
 //#endregion
+//#region SEND DATA
+function sendData() {
+  let data = {
+    name: sessionStorage.getItem("INF-firstName"),
+    surname: sessionStorage.getItem("INF-lastName"),
+    email: sessionStorage.getItem("INF-email"),
+    phone_number: sessionStorage.getItem("INF-mobileNumber"),
+    experiences: [
+      {
+        position: sessionStorage.getItem("EXP-position"),
+        employer: sessionStorage.getItem("EXP-employer"),
+        start_date: sessionStorage.getItem("EXP-startingDate"),
+        due_date: sessionStorage.getItem("EXP-endingDate"),
+        description: sessionStorage.getItem("EXP-description"),
+      },
+    ],
+    educations: [
+      {
+        institute: sessionStorage.getItem("EDU-education"),
+        degree: sessionStorage.getItem("EDU-degree"),
+        due_date: sessionStorage.getItem("EDU-degreeDate"),
+        description: sessionStorage.getItem("EDU-description"),
+      },
+    ],
+    image: sessionStorage.getItem("INF-image"),
+    about_me: sessionStorage.getItem("INF-aboutMe"),
+  };
+  console.log(data);
+  fetch("https://resume.redberryinternship.ge/api/cvs", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+    .then((response) => {
+      console.log("Response status:", response.status);
+    })
+    .catch((error) => {
+      console.log("Response error:", error);
+    });
+}
+//#endregion
 //#region NEXT BUTTON
 function goNext() {
-  if (
-    positionPass.style.display === "block" &&
-    employerPass.style.display === "block" &&
-    sessionStorage.getItem("EXP-startingDate") !== "" &&
-    sessionStorage.getItem("EXP-endingDate") !== "" &&
-    sessionStorage.getItem("EXP-description") !== ""
-  ) {
-    window.location.href = "../განათლება/index.html";
-  } else {
-    console.log(positionPass.style.display);
-    console.log(employerPass.style.display);
-    console.log(startingDate);
-    console.log(endingDate);
-    console.log(description);
-    if (sessionStorage.getItem("EXP-position").length === 0) {
-      let positionElement = document.querySelector("#EXP-position");
-      positionElement.style.border = "1px solid #EF5050";
-      positionPass.style.display = "none";
-      positionError.style.display = "block";
-      document.querySelector(".redPos").style.color = "#E52F2F";
-    } else {
-      errorSuccessHandlingForPosition();
-    }
-    if (sessionStorage.getItem("EXP-employer").length === 0) {
-      let employerElement = document.querySelector("#EXP-employer");
-      employerElement.style.border = "1px solid #EF5050";
-      employerPass.style.display = "none";
-      employerError.style.display = "block";
-      document.querySelector(".redEmployer").style.color = "#E52F2F";
-    } else {
-      errorSuccessHandlingForEmployer();
-    }
-    if (sessionStorage.getItem("EXP-description").length === 0) {
-      let descriptionElement = document.querySelector("#EXP-description");
-      descriptionElement.style.border = "1px solid #EF5050";
-      document.querySelector(".descriptionHeader").style.color = "#E52F2F";
-    } else {
-      errorSuccessHandlingForDescription();
-    }
-    if (!sessionStorage.getItem("EXP-startingDate")) {
-      let startingDateElement = document.querySelector("#EXP-startingDate");
-      startingDateElement.style.border = "1px solid #EF5050";
-      document.querySelector(".startDateHeader").style.color = "#E52F2F";
-    } else {
-      errorSuccessHandlingForStartDate();
-    }
-    if (!sessionStorage.getItem("EXP-endingDate")) {
-      let endingDateElement = document.querySelector("#EXP-endingDate");
-      endingDateElement.style.border = "1px solid #EF5050";
-      document.querySelector(".endDateHeader").style.color = "#E52F2F";
-    } else {
-      errorSuccessHandlingForEndDate();
-    }
-  }
+  sendData();
+  // if (
+  //   positionPass.style.display === "block" &&
+  //   employerPass.style.display === "block" &&
+  //   sessionStorage.getItem("EXP-startingDate") !== "" &&
+  //   sessionStorage.getItem("EXP-endingDate") !== "" &&
+  //   sessionStorage.getItem("EXP-description") !== ""
+  // ) {
+  //   //sendData();
+  //   window.location.href = "../განათლება/index.html";
+  // } else {
+  //   if (sessionStorage.getItem("EXP-position").length === 0) {
+  //     let positionElement = document.querySelector("#EXP-position");
+  //     positionElement.style.border = "1px solid #EF5050";
+  //     positionPass.style.display = "none";
+  //     positionError.style.display = "block";
+  //     document.querySelector(".redPos").style.color = "#E52F2F";
+  //   } else {
+  //     errorSuccessHandlingForPosition();
+  //   }
+  //   if (sessionStorage.getItem("EXP-employer").length === 0) {
+  //     let employerElement = document.querySelector("#EXP-employer");
+  //     employerElement.style.border = "1px solid #EF5050";
+  //     employerPass.style.display = "none";
+  //     employerError.style.display = "block";
+  //     document.querySelector(".redEmployer").style.color = "#E52F2F";
+  //   } else {
+  //     errorSuccessHandlingForEmployer();
+  //   }
+  //   if (sessionStorage.getItem("EXP-description").length === 0) {
+  //     let descriptionElement = document.querySelector("#EXP-description");
+  //     descriptionElement.style.border = "1px solid #EF5050";
+  //     document.querySelector(".descriptionHeader").style.color = "#E52F2F";
+  //   } else {
+  //     errorSuccessHandlingForDescription();
+  //   }
+  //   if (!sessionStorage.getItem("EXP-startingDate")) {
+  //     let startingDateElement = document.querySelector("#EXP-startingDate");
+  //     startingDateElement.style.border = "1px solid #EF5050";
+  //     document.querySelector(".startDateHeader").style.color = "#E52F2F";
+  //   } else {
+  //     errorSuccessHandlingForStartDate();
+  //   }
+  //   if (!sessionStorage.getItem("EXP-endingDate")) {
+  //     let endingDateElement = document.querySelector("#EXP-endingDate");
+  //     endingDateElement.style.border = "1px solid #EF5050";
+  //     document.querySelector(".endDateHeader").style.color = "#E52F2F";
+  //   } else {
+  //     errorSuccessHandlingForEndDate();
+  //   }
+  //  }
 }
 //#endregion
 //#region GO BACK BUTTON
