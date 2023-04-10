@@ -1,4 +1,3 @@
 # Redberry-Project
 
-სწორი ლინკი აპლიკაციის სანახავად 👇
-https://giorgigrigolia06.github.io/Redberry-Project/Main
+The application is only optimized for the screen sizes of 1920 X 1080
